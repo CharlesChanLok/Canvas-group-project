@@ -5,6 +5,7 @@ let contextDraft = canvasDraft.getContext('2d');
 let currentFunction;
 let dragging = false;
 let isdrawing = false;
+contextDraft.fillStyle = "black"; //default color
 
 $('#canvas-draft').mousedown(function (e) {
     let mouseX = e.pageX - this.offsetLeft;

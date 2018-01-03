@@ -24,6 +24,7 @@
             <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
             <span class="btn btn-danger fa fa-eraser" id="clearing">Clear All</span>
             <span class="btn btn-light fa fa-eraser" id="erasing">Eraser</span>
+            <span><input type="color" id="color-picker"></span>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
@@ -35,6 +36,7 @@
         <script type='text/javascript' src="js/drawing-circle.js"></script>
         <script type='text/javascript' src="js/clearing-all.js"></script>
         <script type='text/javascript' src="js/eraser.js"></script>
+        <script type='text/javascript' src="js/color-selector.js"></script>
         <script type='text/javascript'>
             $('#drawing-rectangle').click(() => {
                 currentFunction = new DrawingRectangle(contextReal, contextDraft);
@@ -51,6 +53,11 @@
             $('#clearing').click(() => {
                 clearAll();
             });
+            $("#color-picker").change((event) => {
+                selectColor(event);   
+    
+});
+
             currentFunction = new DrawingRectangle(contextReal, contextDraft);    
         </script>
     </body>
