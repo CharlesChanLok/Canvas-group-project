@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
     crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
     crossorigin="anonymous">
@@ -20,20 +20,36 @@
         </div>
         <div class="buttons">
             <span class="btn btn-primary fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
+            <span class="btn btn-success fa fa-circle" id="drawing-circle">Drawing Circle</span>
             <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
+            <span class="btn btn-danger fa fa-eraser" id="clearing">Clear All</span>
+            <span class="btn btn-light fa fa-eraser" id="erasing">Eraser</span>
         </div>
-        <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
         crossorigin="anonymous"></script>
         <script type='text/javascript' src="js/canvas-common.js"></script>
         <script type='text/javascript' src="js/drawing-line.js"></script>
         <script type='text/javascript' src="js/drawing-rectangle.js"></script>
+        <script type='text/javascript' src="js/drawing-circle.js"></script>
+        <script type='text/javascript' src="js/clearing-all.js"></script>
+        <script type='text/javascript' src="js/eraser.js"></script>
         <script type='text/javascript'>
             $('#drawing-rectangle').click(() => {
                 currentFunction = new DrawingRectangle(contextReal, contextDraft);
             });
+            $('#drawing-circle').click(() => {
+                currentFunction = new DrawingCircle(contextReal, contextDraft);
+            });
             $('#drawing-line').click(() => {
                 currentFunction = new DrawingLine(contextReal, contextDraft);
+            });
+            $('#erasing').click(() => {
+                currentFunction = new Erasing(contextReal, contextDraft);
+            });  
+            $('#clearing').click(() => {
+                clearAll();
             });
             currentFunction = new DrawingRectangle(contextReal, contextDraft);    
         </script>
