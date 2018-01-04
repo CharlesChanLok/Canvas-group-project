@@ -19,9 +19,11 @@
             <canvas id="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
         </div>
         <div class="buttons">
+            <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
             <span class="btn btn-primary fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
             <span class="btn btn-success fa fa-circle" id="drawing-circle">Drawing Circle</span>
-            <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
+            <span class="btn btn-success fa fa-circle-o" id="drawing-oval">Drawing Oval</span>
+            <span class="btn btn-primary fa fa-flask" id="color-bucket">Color bucket</span>
             <span class="btn btn-danger fa fa-eraser" id="clearing">Clear All</span>
             <span class="btn btn-light fa fa-eraser" id="erasing">Eraser</span>
         </div>
@@ -33,17 +35,25 @@
         <script type='text/javascript' src="js/drawing-line.js"></script>
         <script type='text/javascript' src="js/drawing-rectangle.js"></script>
         <script type='text/javascript' src="js/drawing-circle.js"></script>
+        <script type='text/javascript' src="js/drawing-oval.js"></script>
+        <script type='text/javascript' src="js/color-bucket.js"></script>
         <script type='text/javascript' src="js/clearing-all.js"></script>
         <script type='text/javascript' src="js/eraser.js"></script>
         <script type='text/javascript'>
+            $('#drawing-line').click(() => {
+                currentFunction = new DrawingLine(contextReal, contextDraft);
+            });
             $('#drawing-rectangle').click(() => {
                 currentFunction = new DrawingRectangle(contextReal, contextDraft);
             });
             $('#drawing-circle').click(() => {
                 currentFunction = new DrawingCircle(contextReal, contextDraft);
             });
-            $('#drawing-line').click(() => {
-                currentFunction = new DrawingLine(contextReal, contextDraft);
+            $('#drawing-oval').click(() => {
+                currentFunction = new DrawingOval(contextReal, contextDraft);
+            });
+            $('#color-bucket').click(() => {
+                currentFunction = new ColorBucket(canvasReal, contextReal);
             });
             $('#erasing').click(() => {
                 currentFunction = new Erasing(contextReal, contextDraft);
