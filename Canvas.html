@@ -34,6 +34,7 @@
             <span>
                 <input type="file" class="btn" id="upload-image">
             </span>
+            <span>	<input class="jscolor" onchange="update(this.jscolor)" value="000000"></span>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 
@@ -50,7 +51,9 @@
         <script type='text/javascript' src="js/eraser.js"></script>
         <script type='text/javascript' src="js/color-selector.js"></script>
         <script type='text/javascript' src="js/upload-image.js"></script>
+        <script src="js/jscolor.js"></script>
         <script type='text/javascript'>
+
             $('#drawing-line').click(() => {
                 currentFunction = new DrawingLine(contextReal, contextDraft);
             });
@@ -76,10 +79,11 @@
             $('#drawing-polygon').click(() => {
                     currentFunction = new DrawingPolygon(contextReal, contextDraft);
             });
-
+            /*
             $('#color-selector').change((event) => {
                     selectColor(event);
-            });
+            });  */
+       
                 
             $('#upload-image').change((event) => {
                     uploadImage(contextReal, canvasReal, event);
