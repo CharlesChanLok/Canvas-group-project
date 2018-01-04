@@ -16,20 +16,23 @@ class ColorBucket extends PaintFunction {
         let fillR = parseInt(hex.slice(1, 3), 16);
         let fillG = parseInt(hex.slice(3, 5), 16);
         let fillB = parseInt(hex.slice(5, 7), 16);
-        
-        // console.log(hex);
-        // console.log(fillR);
-        // console.log(fillG);
+        let opacity = 255;
+        console.log(hex);
+        console.log(fillR);
+        console.log(fillG);
+        console.log(fillB);
         this.oldR = this.imgDataArray.data[pixelStart];
         this.oldG = this.imgDataArray.data[pixelStart + 1];
         this.oldB = this.imgDataArray.data[pixelStart + 2];
-        this.oldAlpha = this.imgDataArray.data[pixelStart +3];
+        this.oldA = this.imgDataArray.data[pixelStart +3];
 
-        // console.log(this.oldR);
-        // console.log(this.oldG);
-        // console.log(this.oldB);
+        console.log(this.oldR);
+        console.log(this.oldG);
+        console.log(this.oldB);
+        console.log(this.oldA);
 
-        if (!(this.oldR == fillR && this.oldG == fillG && this.oldB == fillB)) {
+        // console.log(!(this.oldR == fillR && this.oldG == fillG && this.oldB == fillB && this.oldA == 255));
+        if (!(this.oldR == fillR && this.oldG == fillG && this.oldB == fillB && this.oldA == opacity)) {
             while(pixelStack.length) {
                 let newPixel = pixelStack.pop();
                 x = newPixel[0];
@@ -47,7 +50,7 @@ class ColorBucket extends PaintFunction {
                 let rightDone = false;
                 
                 while (y <= this.canvas.height-1 && this.matchStartColor(pixelPos)) {
-                    this.colorPixel(pixelPos, fillR, fillG, fillB);
+                    this.colorPixel(pixelPos, fillR, fillG, fillB, opacity);
     
                     if (x > 0) {
                         if (this.matchStartColor(pixelPos - 4)){
@@ -85,14 +88,15 @@ class ColorBucket extends PaintFunction {
         let NewR = this.imgDataArray.data[pos];
         let NewG = this.imgDataArray.data[pos+1];
         let NewB = this.imgDataArray.data[pos+2];
-        return (NewR == this.oldR && NewG == this.oldG && NewB == this.oldB);       
+        let NewA = this.imgDataArray.data[pos+3];
+        return (NewR == this.oldR && NewG == this.oldG && NewB == this.oldB && NewA == this.oldA);       
     }
 
-   colorPixel(pos,colorR, colorG, colorB) {
+   colorPixel(pos,colorR, colorG, colorB, opacity) {
         this.imgDataArray.data[pos] = colorR;
         this.imgDataArray.data[pos+1] = colorG;
         this.imgDataArray.data[pos+2] = colorB;
-        this.imgDataArray.data[pos+3] = 255;
+        this.imgDataArray.data[pos+3] = opacity;
     }
 
     
