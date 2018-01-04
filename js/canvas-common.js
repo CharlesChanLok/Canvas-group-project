@@ -6,6 +6,9 @@ let currentFunction;
 let dragging = false;
 contextReal.strokeStyle = "#000";
 contextReal.fillStyle = "#dddddd"
+contextDraft.fillStyle = "#dddddd"; //hexdeciaml color code for test
+//let isdrawing = false;
+
 
 $('#canvas-draft').mousedown(function (e) {
     let mouseX = e.pageX - this.offsetLeft;

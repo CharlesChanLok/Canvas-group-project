@@ -11,7 +11,7 @@ class ColorBucket extends PaintFunction {
         let pixelStack = [coord];
         let pixelStart = (coord[1] * this.canvas.width + coord[0] ) * 4;
         let x,y;
-        this.context.fillStyle = '#345678';
+        // this.context.fillStyle = '#345678';
         let hex = this.context.fillStyle;
         let fillR = parseInt(hex.slice(1, 3), 16);
         let fillG = parseInt(hex.slice(3, 5), 16);
