@@ -4,7 +4,8 @@ let canvasDraft = document.getElementById('canvas-draft');
 let contextDraft = canvasDraft.getContext('2d');
 let currentFunction;
 let dragging = false;
-let isdrawing = false;
+contextReal.strokeStyle = "#000";
+contextReal.fillStyle = "#dddddd"
 
 $('#canvas-draft').mousedown(function (e) {
     let mouseX = e.pageX - this.offsetLeft;
