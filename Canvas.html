@@ -28,14 +28,17 @@
             <span class="btn btn-primary fa fa-flask" id="color-bucket">Color bucket</span>
             <span class="btn btn-danger fa fa-eraser" id="clearing">Clear All</span>
             <span class="btn btn-light fa fa-eraser" id="erasing">Eraser</span>
+            <!--
             <span>
                 <input type="color" id="color-selector">
-            </span>
+            </span> -->
             <span>
                 <input type="file" class="btn" id="upload-image">
             </span>
             <span>	<input class="jscolor" onchange="update(this.jscolor)" value="000000"></span>
+            <span class="btn btn-light" id="save">Save</span>
         </div>
+
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 
         crossorigin="anonymous"></script>
@@ -51,7 +54,9 @@
         <script type='text/javascript' src="js/eraser.js"></script>
         <script type='text/javascript' src="js/color-selector.js"></script>
         <script type='text/javascript' src="js/upload-image.js"></script>
+        <script type='text/javascript' src="js/save.js"></script>
         <script src="js/jscolor.js"></script>
+        
         <script type='text/javascript'>
 
             $('#drawing-line').click(() => {
@@ -83,10 +88,12 @@
             $('#color-selector').change((event) => {
                     selectColor(event);
             });  */
-       
-                
             $('#upload-image').change((event) => {
                     uploadImage(contextReal, canvasReal, event);
+            });
+  
+            $('#save').click(() => {
+                exportCanvasAsPNG(canvasReal);    
             });
             currentFunction = new DrawingRectangle(contextReal, contextDraft);    
             
