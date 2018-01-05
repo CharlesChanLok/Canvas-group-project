@@ -5,8 +5,8 @@ function selectColor(event) {
     contextReal.strokeStyle = event.target.value;
 } */
 
-function update(jscolor) {
-    contextDraft.fillStyle = '#' + jscolor;
-    contextReal.fillStyle = '#' + jscolor;
-    contextReal.strokeStyle = '#' + jscolor;
+function update() {
+    contextDraft.fillStyle = '#' + document.getElementById('color_value').value;
+    contextReal.fillStyle = '#' + document.getElementById('color_value').value;
+    contextReal.strokeStyle = '#' + document.getElementById('color_value').value;
 }

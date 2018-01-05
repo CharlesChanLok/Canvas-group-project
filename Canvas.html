@@ -37,7 +37,9 @@
             <input type="file" class="btn" id="upload-image">
         </span>
         <span>
-            <input class="jscolor" onchange="update(this.jscolor)" value="000000">
+            <input name="color2" type="hidden" id="color_value" value="99cc00" onchange="update()">
+            <button class="jscolor {valueElement: 'color_value'}" style="width:50px; height:20px;">
+            </button>
         </span>
         <span class="btn btn-light" id="save-PNG">Save As PNG</span>
         <span class="btn btn-light" id="save-JPEG">Save As JPEG</span>
@@ -90,26 +92,25 @@
         $('#drawing-polygon').click(() => {
             currentFunction = new DrawingPolygon(contextReal, contextDraft);
         });
-        /*
-        $('#color-selector').change((event) => {
-                selectColor(event);
-        });  */
+
+        $('#color_value').change(update(this.jscolor));
+
         $('#upload-image').change((event) => {
             uploadImage(contextReal, canvasReal, event);
         });
-    
-            
+
+
         $('#save-PNG').click(() => {
             exportCanvasAsPNG(canvasReal);
         });
 
         $('#save-JPEG').click(() => {
             exportCanvasAsJPEG(canvasReal);
-        }); 
-    
+        });
+
         currentFunction = new DrawingRectangle(contextReal, contextDraft);
 
-        
+
     </script>
 </body>
 
