@@ -40,6 +40,7 @@
         </span>
         <span class="btn btn-light" id="save-PNG">Save As PNG</span>
         <span class="btn btn-light" id="save-JPEG">Save As JPEG</span>
+        <span class="btn btn-light" id="dropper">Dropper</span>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -57,6 +58,8 @@
     <script type='text/javascript' src="js/color-selector.js"></script>
     <script type='text/javascript' src="js/upload-image.js"></script>
     <script type='text/javascript' src="js/save.js"></script>
+    <script type='text/javascript' src="js/contextMenu/*.js"></script>
+    <script type='text/javascript' src="js/color-dropper.js"></script>
     <script src="js/jscolor.js"></script>
 
     <script type='text/javascript'>
@@ -93,7 +96,15 @@
         $('#upload-image').change((event) => {
             uploadImage(contextReal, canvasReal, event);
         });
-
+        /*
+        var menu = [{
+                name: 'Save as PNG',
+                fun: function () {
+                    exportCanvasAsPNG(canvasReal);
+                }
+            }];
+            $('#save-PNG').contextMenu(menu);
+            */
         $('#save-PNG').click(() => {
             exportCanvasAsPNG(canvasReal);
         });
@@ -101,6 +112,10 @@
         $('#save-JPEG').click(() => {
             exportCanvasAsJPEG(canvasReal);
         });
+        $('#dropper').click( (event) => {
+            pick(event);
+        });
+    
         currentFunction = new DrawingRectangle(contextReal, contextDraft);
 
     </script>
