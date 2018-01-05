@@ -2,14 +2,27 @@
 
 function exportCanvasAsPNG(canvas) {
 
-    let fileName =  prompt("Please enter file name:") + '.png'; 
+    let fileName = prompt("Please enter file name:") + '.png';
     var MIME_TYPE = "image/png";
-    var imgURL = canvas.toDataURL(MIME_TYPE);
+    var imgURL = canvas.toDataURL(MIME_TYPE, 1);
     var dlLink = document.createElement('a');
-    console.log( dlLink.download);
     dlLink.download = fileName;
     dlLink.href = imgURL;
-    console.log(dlLink.href);
+    dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+
+    document.body.appendChild(dlLink);
+    dlLink.click();
+    document.body.removeChild(dlLink);
+}
+
+function exportCanvasAsJPEG(canvas) {
+
+    let fileName = prompt("Please enter file name:") + '.jpeg';
+    var MIME_TYPE = "image/jpeg";
+    var imgURL = canvas.toDataURL(MIME_TYPE, 1);
+    var dlLink = document.createElement('a');
+    dlLink.download = fileName;
+    dlLink.href = imgURL;
     dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
 
     document.body.appendChild(dlLink);
