@@ -12,6 +12,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet" type='text/css'>
+    <link href="contextMenu/contextMenu.min.css" rel="stylesheet" type='text/css'>
 </head>
 
 <body>
@@ -58,9 +59,9 @@
     <script type='text/javascript' src="js/color-selector.js"></script>
     <script type='text/javascript' src="js/upload-image.js"></script>
     <script type='text/javascript' src="js/save.js"></script>
-    <script type='text/javascript' src="js/contextMenu/*.js"></script>
     <script type='text/javascript' src="js/color-dropper.js"></script>
-    <script src="js/jscolor.js"></script>
+    <script type='text/javascript' src="js/contextMenu/contextMenu.min.js"></script>
+    <script src="js/jscolor.min.js"></script>
 
     <script type='text/javascript'>
 
@@ -96,28 +97,19 @@
         $('#upload-image').change((event) => {
             uploadImage(contextReal, canvasReal, event);
         });
-        /*
-        var menu = [{
-                name: 'Save as PNG',
-                fun: function () {
-                    exportCanvasAsPNG(canvasReal);
-                }
-            }];
-            $('#save-PNG').contextMenu(menu);
-            */
+    
+            
         $('#save-PNG').click(() => {
             exportCanvasAsPNG(canvasReal);
         });
 
         $('#save-JPEG').click(() => {
             exportCanvasAsJPEG(canvasReal);
-        });
-        $('#dropper').click( (event) => {
-            pick(event);
-        });
+        }); 
     
         currentFunction = new DrawingRectangle(contextReal, contextDraft);
 
+        
     </script>
 </body>
 

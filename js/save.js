@@ -1,4 +1,4 @@
-/* #20 https://stackoverflow.com/questions/923885/capture-html-canvas-as-gif-jpg-png-pdf */
+/* https://stackoverflow.com/questions/923885/capture-html-canvas-as-gif-jpg-png-pdf */
 
 function exportCanvasAsPNG(canvas) {
 
