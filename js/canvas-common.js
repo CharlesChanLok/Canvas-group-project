@@ -5,8 +5,8 @@ let contextDraft = canvasDraft.getContext('2d');
 let currentFunction;
 let dragging = false;
 contextReal.strokeStyle = "#000";
-contextReal.fillStyle = "#dddddd"
-contextDraft.fillStyle = "#dddddd"; //hexdeciaml color code for test
+contextReal.fillStyle = "#000"
+contextDraft.fillStyle = "#000"; //hexdeciaml color code for test
 //let isdrawing = false;
 
 
