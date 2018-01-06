@@ -43,6 +43,7 @@
         <script type='text/javascript' src="js/canvas-common.js"></script>
         <script type='text/javascript' src="js/drawing-line.js"></script>
         <script type='text/javascript' src="js/drawing-rectangle.js"></script>
+        <script type='text/javascript' src="js/drawing-polygon.js"></script>
         <script type='text/javascript' src="js/drawing-circle.js"></script>
         <script type='text/javascript' src="js/drawing-oval.js"></script>
         <script type='text/javascript' src="js/color-bucket.js"></script>
@@ -52,7 +53,7 @@
         <script type='text/javascript' src="js/upload-image.js"></script>
         <script type='text/javascript'>
             $('#drawing-line').click(() => {
-                currentFunction = new DrawingLine(contextReal, contextDraft);
+                currentFunction = new DrawingLine(contextReal, contextDraft, canvasReal, canvasDraft);
             });
             $('#drawing-rectangle').click(() => {
                 currentFunction = new DrawingRectangle(contextReal, contextDraft);

@@ -3,8 +3,11 @@ class DrawingRectangle extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
+        this.rectWidth = 0;
+        this.rectHeight = 0;
         this.doneSizing = false;
         this.canMove = false;
+        this.dragOrigDiff;
 
     }
 
@@ -12,23 +15,26 @@ class DrawingRectangle extends PaintFunction {
         if (!this.doneSizing) {
             this.orig = coord;
         } else {
-            if(Math.sqrt(Math.pow((this.orig[0] - coord[0]), 2)
-                + Math.pow((this.orig[1] - coord[1]), 2)) <= 200) {
+            this.dragOrigDiff = [coord[0] - this.orig[0], coord[1] - this.orig[1]];
+            console.log('diff: ' + this.dragOrigDiff);
+            console.log('size: ' + [this.rectWidth, this.rectHeight]);
+            // console.log(Math.abs(this.dragOrigDiff[0]) <= this.rectWidth / 2 && Math.abs(this.dragOrigDiff[1]) <= this.rectHeight / 2));
+            if (this.dragOrigDiff[0] <= this.rectWidth && this.dragOrigDiff[1] <= this.rectHeight) {
                 this.canMove = true;      
-            }
+                // console.log('This can move');
+                };
         }
     }
 
     onDragging(coord, event) {
         if (!this.doneSizing) {
             this.rectWidth = coord[0] - this.orig[0];
-            this.rectheight = coord[1] - this.orig[1];
-            this.DrawRect(this.contextDraft, this.orig, this.rectWidth, this. rectheight)
+            this.rectHeight = coord[1] - this.orig[1];
+            this.DrawRect(this.contextDraft, this.orig, this.rectWidth, this. rectHeight)
         } else {    
+                // console.log(this.dragOrigDiff);
                 if (this.canMove) {
-                    this.DrawRect(this.contextDraft, coord, this.rectWidth, this. rectheight)
-                    this.orig[0] = coord[0];
-                    this.orig[1] = coord[1];
+                    this.DrawRect(this.contextDraft, [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]], this.rectWidth, this. rectHeight)
                 }
         }
     }
@@ -39,8 +45,7 @@ class DrawingRectangle extends PaintFunction {
             this.doneSizing = true;
         } else {
             if (this.canMove) {
-                console.log(coord);
-                this.DrawRect(this.contextReal, coord, this.rectWidth, this. rectheight)
+                this.DrawRect(this.contextReal, [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]], this.rectWidth, this. rectHeight)
                 this.doneSizing = false;
                 this.canMove = false;
             }

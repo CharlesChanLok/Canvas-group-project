@@ -3,9 +3,10 @@ class DrawingCircle extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
+        this.dragOrigDiff = null;
+        this.orig = null;
         this.doneSizing= false;
         this.canMove = false;
-        this.dragOrigDiff;
     }
 
     onMouseDown(coord) {
@@ -18,7 +19,7 @@ class DrawingCircle extends PaintFunction {
             if (Math.sqrt(Math.pow(this.dragOrigDiff[0], 2)
             + Math.pow(this.dragOrigDiff[1], 2)) <= this.radius) {
                 this.canMove = true;
-            }
+            };
         };
     }
     onDragging(coord) {
@@ -42,7 +43,7 @@ class DrawingCircle extends PaintFunction {
             this.doneSizing = true;
         } else {
             if (this.canMove) {
-                this.drawCircle(this.contextReal, coord, this.radius)
+                this.drawCircle(this.contextReal, [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]], this.radius)
                 this.radius = 0;
                 this.doneSizing = false;
                 this.canMove = false;

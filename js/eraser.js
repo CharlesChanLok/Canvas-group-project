@@ -9,7 +9,7 @@ class Erasing extends PaintFunction {
         this.context.globalCompositeOperation = 'destination-out';
         this.old = { x: coord[0], y: coord[1] };
         this.context.beginPath();
-        this.context.arc(this.old.x, this.old.y, 10, 0, 2 * Math.PI);
+        this.context.arc(this.old.x, this.old.y, 30, 0, 2 * Math.PI);
         this.context.fill();
         this.context.stroke();
     };
@@ -27,7 +27,7 @@ class Erasing extends PaintFunction {
             this.context.globalCompositeOperation = 'destination-out';
     
             this.context.beginPath();
-            this.context.arc(x, y, 10, 0, 2 * Math.PI);
+            this.context.arc(x, y, 30, 0, 2 * Math.PI);
             this.context.fill();
     
             this.context.lineWidth = 20;

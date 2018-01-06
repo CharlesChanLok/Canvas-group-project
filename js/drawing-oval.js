@@ -3,33 +3,61 @@ class DrawingOval extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
+        this.radiusX = 0;
+        this.radiusY = 0;
+        this.orig = 0;
+        this.doneSizing = false;
+        this.canMove = false;
+        this.dragOrigDiff = 0;
+
     }
 
     onMouseDown(coord, event) {
-        this.contextReal.fillStyle = "#f44";
-        this.origX = coord[0];
-        this.origY = coord[1];
+        if (!this.doneSizing) {
+            this.orig = coord;
+            // console.log('centerPt:' + coord);
+        } else {
+            this.dragOrigDiff = [coord[0] - this.orig[0], coord[1] - this.orig[1]];
+            console.log(this.dragOrigDiff);
+            console.log(Math.abs(this.dragOrigDiff[0]) <= this.radiusX && Math.abs(this.dragOrigDiff[1]) <= this.radiusY);
+            if (Math.abs(this.dragOrigDiff[0]) <= this.radiusX && Math.abs(this.dragOrigDiff[1]) <= this.radiusY) {
+                this.canMove = true;
+            };
+        };
     }
     
     onDragging(coord, event) {
-        let radiusX = Math.abs((this.origX - coord[0]));
-        let radiusY = Math.abs((this.origY - coord[1]));
-        this.contextDraft.fillStyle = "#f44";
-        this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-        this.contextDraft.beginPath();
-        this.contextDraft.ellipse(this.origX, this.origY, radiusX, radiusY, 0, 0, 2 * Math.PI);
-        this.contextDraft.fill();
+        if (!this.doneSizing) {
+            this.radiusX = Math.abs((this.orig[0] - coord[0]));
+            this.radiusY = Math.abs((this.orig[1] - coord[1]));
+            // console.log(this.radiusX);
+            // console.log(this.radiusY);
+            this.drawOval(this.contextDraft, this.orig, this.radiusX, this.radiusY);
+        } 
+        else {
+            if (this.canMove) {
+                this.drawOval(this.contextDraft, [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]], this.radiusX, this.radiusY);
+            }
+        }
     }
 
     onMouseMove() { }
     onMouseUp(coord) {
-        let radiusX = Math.abs((this.origX - coord[0]));
-        let radiusY = Math.abs((this.origY - coord[1]));
-        this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-        this.contextReal.beginPath();
-        this.contextReal.ellipse(this.origX, this.origY, radiusX, radiusY, 0, 0, 2 * Math.PI);
-        this.contextReal.fill();
+        if (!this.doneSizing) {
+            this.doneSizing = true;
+        } else {
+            if (this.canMove) {
+                this.drawOval(this.contextReal, [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]], this.radiusX, this.radiusY);
+            }
+        }
     }
     onMouseLeave() { }
     onMouseEnter() { }
+
+    drawOval(context, coord, radiusX, radiusY) {
+        this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+        context.beginPath();
+        context.ellipse(coord[0], coord[1], radiusX, radiusY, 0, 0, 2 * Math.PI);
+        context.fill();
+    }
 }
