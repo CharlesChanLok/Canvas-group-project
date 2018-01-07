@@ -43,6 +43,8 @@
         </span>
         <span class="btn btn-light" id="save-PNG">Save As PNG</span>
         <span class="btn btn-light" id="save-JPEG">Save As JPEG</span>
+        <span class="btn btn-light" id="save-SVG">Save As SVG</span>
+
         <span class="btn btn-light" id="dropper">Dropper</span>
     </div>
 
@@ -64,6 +66,7 @@
     <script type='text/javascript' src="js/color-dropper.js"></script>
     <script type='text/javascript' src="js/contextMenu/contextMenu.min.js"></script>
     <script src="js/jscolor.min.js"></script>
+    <script src="js/canvas2svg.js"></script>
 
     <script type='text/javascript'>
 
@@ -101,7 +104,7 @@
         $('#upload-image').change((event) => {
             uploadImage(contextReal, canvasReal, event);
         });
-
+        
 
         $('#save-PNG').click(() => {
             exportCanvasAsPNG(canvasReal);
@@ -111,6 +114,10 @@
             exportCanvasAsJPEG(canvasReal);
         });
 
+        $('#save-SVG').click(() => {
+            exportCanvasAsSVG();
+        });
+        
         currentFunction = new DrawingRectangle(contextReal, contextDraft);
 
 
