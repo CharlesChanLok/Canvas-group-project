@@ -119,7 +119,10 @@
         });
         
         currentFunction = new DrawingRectangle(contextReal, contextDraft);
-
+        // confirm leaving page
+        window.onbeforeunload = function() {
+            return true;
+          };
 
     </script>
 </body>
