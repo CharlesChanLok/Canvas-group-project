@@ -2,10 +2,13 @@ let canvasReal = document.getElementById('canvas-real');
 let contextReal = canvasReal.getContext('2d');
 let canvasDraft = document.getElementById('canvas-draft');
 let contextDraft = canvasDraft.getContext('2d');
+let canvasControl = document.getElementById('canvas-control');
+let contextControl = canvasControl.getContext('2d');
 let currentFunction;
 let dragging = false;
 contextReal.strokeStyle = "#000";
-contextReal.fillStyle = "#dddddd"
+contextReal.fillStyle = "#dddddd";
+contextControl.fillStyle = '#000';
 contextDraft.fillStyle = "#dddddd"; //hexdeciaml color code for test
 //let isdrawing = false;
 
