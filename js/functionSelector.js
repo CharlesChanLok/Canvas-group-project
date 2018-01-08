@@ -31,6 +31,10 @@ $('#drawing-stline').click(() => {
     currentFunction = new DrawingStline(contextReal, contextDraft);
 });
 
+$('#brush-radial-gradient').click(() => {
+    currentFunction = new BrushRadialGradient(contextReal, contextDraft);
+});
+
 $('#color_value').change(()=>{
     update();
 });
