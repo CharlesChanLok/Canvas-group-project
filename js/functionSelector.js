@@ -47,14 +47,9 @@ $('#save-JPEG').click(() => {
     exportCanvasAsJPEG(canvasReal);
 });
 
-$('#line-width').change(() => {
-    contextReal.lineWidth = document.getElementById('line-width').value;
-    contextDraft.lineWidth = document.getElementById('line-width').value;
-
-})
-$('#sides').change(() => {
-    sides = document.getElementById('sides').value;
-})
+$('#save-SVG').click(() => {
+    exportCanvasAsSVG();
+});
 
 currentFunction = new DrawingRectangle(contextReal, contextDraft);
 // confirm leaving page

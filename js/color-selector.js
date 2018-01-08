@@ -9,4 +9,5 @@ function update() {
     contextDraft.fillStyle = '#' + document.getElementById('color_value').value;
     contextReal.fillStyle = '#' + document.getElementById('color_value').value;
     contextReal.strokeStyle = '#' + document.getElementById('color_value').value;
+
 }

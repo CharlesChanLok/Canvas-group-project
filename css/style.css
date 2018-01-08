@@ -1,11 +1,11 @@
 .canvas{
     border:1px black dotted;
-    position: absolute;
+    position:absolute;
     top:0px;
     bottom:0px;
-    left: 15rem;
+    left:0px;
     right:0px
-} 
+}
 
 #canvas-draft{
     background-color: transparent;
@@ -15,40 +15,4 @@ body{
 }
 #canvas-container{
     height:720px;
-} 
-
-#toolbox div {
-    margin: 5px;
-    height: 2rem;
-}
-
-#flex-container {
-    display: flex;
-    flex-wrap: wrap;
-
-    height: 720px;
-}
-
-#toolbox {
-    width: 7%;
-    padding: 2rem;
-    flex-wrap: wrap;
-}
-#canvasbox {
-    width: 60%;
-    height: 720px;
-    flex-wrap: wrap;
-}
-
-div.btn {
-    background-color: rgb(136, 139, 165);
-}
-
- a:hover {
-     cursor: pointer;
-     background-color: rgb(70, 65, 65);
- }
-
- .dropdown {
-     margin: 10px;
- }
+}  

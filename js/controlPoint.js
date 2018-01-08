@@ -22,7 +22,9 @@ function drawControlPt(controlPointArray, centerPt, width, height) {
 }
 
 function drawCircle(context, coord) {
+    context.fillStyle = '#333';
     context.beginPath();
     context.arc(coord[0], coord[1], 10, 0, 2 * Math.PI);
     context.fill();
+    contextDraft.fillStyle = '#' + document.getElementById('color_value').value;
 }
