@@ -56,7 +56,7 @@ $('#sides').change(() => {
     sides = document.getElementById('sides').value;
 })
 
-currentFunction = new DrawingRectangle(contextReal, contextDraft);
+currentFunction = new DrawingLine(contextReal, contextDraft);
 // confirm leaving page
 window.onbeforeunload = function () {
     return true;

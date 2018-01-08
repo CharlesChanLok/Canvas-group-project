@@ -1,12 +1,47 @@
 .canvas{
-    border:1px black dotted;
+    border:1px black solid;
     position: absolute;
     top:0px;
     bottom:0px;
-    left: 15rem;
+    left: 7rem;
     right:0px
 } 
 
+
+/* slider */
+
+div.slidecontainer {
+    padding-bottom: 7rem;
+}
+.slider {
+    -webkit-appearance: none;
+    width: 6.39rem;;
+    height: 1rem;
+    outline: none;
+    opacity: 1;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 0.7;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 7px;
+    height: 20px;
+    background: rgb(7, 7, 7);
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 7px;
+    height: 20px;
+    background: rgb(7, 7, 7);
+    cursor: pointer;
+}
 #canvas-draft{
     background-color: transparent;
 }
@@ -15,7 +50,8 @@ body{
 }
 
 h6 {
-    font-size: 0.75rem;
+    font-size: 0.89rem;
+    padding: 0.37rem;
 }
 #canvas-container{
     height:720px;
