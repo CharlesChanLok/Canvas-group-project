@@ -4,7 +4,7 @@ class ColorBucket extends PaintFunction {
         this.context = contextReal;
         this.canvas = canvasReal;
         this.imgDataArray = contextReal.getImageData(0, 0, canvasReal.width, canvasReal.height);
-        let oldR, oldG, oldB, OldA;
+        let oldR, oldG, oldB, OldA; 
     }
     
     onMouseDown(coord, event) {
@@ -13,11 +13,11 @@ class ColorBucket extends PaintFunction {
         let x,y;
         // this.context.fillStyle = '#345678';
         let hex = this.context.fillStyle;
+        console.log(this.context.fillStyle);
         let fillR = parseInt(hex.slice(1, 3), 16);
         let fillG = parseInt(hex.slice(3, 5), 16);
         let fillB = parseInt(hex.slice(5, 7), 16);
         let opacity = 255;
-        console.log(hex);
         console.log(fillR);
         console.log(fillG);
         console.log(fillB);
@@ -26,13 +26,13 @@ class ColorBucket extends PaintFunction {
         this.oldB = this.imgDataArray.data[pixelStart + 2];
         this.oldA = this.imgDataArray.data[pixelStart +3];
 
-        console.log(this.oldR);
-        console.log(this.oldG);
-        console.log(this.oldB);
-        console.log(this.oldA);
+        // console.log(this.oldR);
+        // console.log(this.oldG);
+        // console.log(this.oldB);
+        // console.log(this.oldA);
 
         // console.log(!(this.oldR == fillR && this.oldG == fillG && this.oldB == fillB && this.oldA == 255));
-        if (!(this.oldR == fillR && this.oldG == fillG && this.oldB == fillB && this.oldA == opacity)) {
+        if (!(fillR == this.oldR && fillG == this.oldG && fillB == this.oldB && this.oldA == opacity)) {
             while(pixelStack.length) {
                 let newPixel = pixelStack.pop();
                 x = newPixel[0];
@@ -89,7 +89,7 @@ class ColorBucket extends PaintFunction {
         let NewG = this.imgDataArray.data[pos+1];
         let NewB = this.imgDataArray.data[pos+2];
         let NewA = this.imgDataArray.data[pos+3];
-        return (NewR == this.oldR && NewG == this.oldG && NewB == this.oldB && NewA == this.oldA);       
+        return (NewR == this.oldR && NewG == this.oldG && NewB == this.oldB && NewA <= this.oldA);       
     }
 
    colorPixel(pos,colorR, colorG, colorB, opacity) {

@@ -52,15 +52,23 @@ class DrawingLine extends PaintFunction {
         onMouseUp(coord) {
             if (!this.doneDrawing) {
                 this.doneDrawing = true;
-            } else if (this.canMove) {
-                this.drawfromPath(this.contextReal);
-                // this.pathSave = [];
-                // this.doneDrawing = false;
-                // this.canMove = false;
+            // } else if (this.canMove) {
+            //     this.drawfromPath(this.contextReal);
+            //     this.pathSave = [];
+            //     this.doneDrawing = false;
+            //     this.canMove = false;
             }
         }
             
-        onMouseLeave() { }
+        onMouseLeave() {
+            if (this.canMove) {
+                this.drawfromPath(this.contextReal);
+                this.pathSave = [];
+                this.doneDrawing = false;
+                this.canMove = false;
+            }
+        }
+        
         onMouseEnter() { }
         
         drawfromPath(context) {

@@ -31,7 +31,8 @@ class DrawingCircle extends PaintFunction {
             if (this.canMove) {
                     console.log('diff: ' + this.dragOrigDiff);
                     console.log('new CenterPt: ' + [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]]);
-                    this.drawCircle(this.contextDraft, [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]], this.radius)
+                    this.orig = [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]];
+                    this.drawCircle(this.contextDraft, this.orig, this.radius)
                     // this.orig[0] = coord[0];
                     // this.orig[1] = coord[1];
                 }
@@ -42,15 +43,16 @@ class DrawingCircle extends PaintFunction {
         if (!this.doneSizing) {
             this.doneSizing = true;
         } else {
-            if (this.canMove) {
-                this.drawCircle(this.contextReal, [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]], this.radius)
-                this.radius = 0;
-                this.doneSizing = false;
-                this.canMove = false;
-            }
         }
     }
-    onMouseLeave() { }
+    onMouseLeave(coord) {
+        if (this.canMove) {
+            this.drawCircle(this.contextReal, this.orig, this.radius)
+            this.radius = 0;
+            this.doneSizing = false;
+            this.canMove = false;
+        }
+     }
     onMouseEnter() { }
 
     drawCircle(context, coord, radius) {

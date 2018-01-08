@@ -12,15 +12,16 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet" type='text/css'>
+    <link href="js/contextMenu/contextMenu.min.css" rel="stylesheet" type='text/css'>
 </head>
 
     <body>
         <div id="canvas-container">
             <canvas id="canvas-real" class="canvas" width='1280px' height='720px'></canvas>
-            <canvas id="canvas-control" class="canvas" width='1280px' height='720px'></canvas>
             <canvas id="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
         </div>
         <div class="buttons">
+            <!-- New Class Function -->
             <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
             <span class="btn btn-primary fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
             <span class="btn btn-success fa fa-circle" id="drawing-circle">Drawing Circle</span>
@@ -29,15 +30,19 @@
             <span class="btn btn-primary fa fa-flask" id="color-bucket">Color bucket</span>
             <span class="btn btn-danger fa fa-eraser" id="clearing">Clear All</span>
             <span class="btn btn-light fa fa-eraser" id="erasing">Eraser</span>
+            <span class="btn btn-light" id="dropper">Dropper</span>
+            <!-- Utilities -->
+            <span><input type="file" class="btn" id="upload-image"></span>
             <span>
-                <input type="color" id="color-selector">
+                <input name="color2" type="hidden" id="color_value" value="000">
+                <button class="jscolor {valueElement: 'color_value'}" style="width:50px; height:20px;"></button>
             </span>
-            <span>
-                <input type="file" class="btn" id="upload-image">
-            </span>
+            <span class="btn btn-light" id="save-PNG">Save As PNG</span>
+            <span class="btn btn-light" id="save-JPEG">Save As JPEG</span>
+            <!-- <span class="btn btn-light" id="save-SVG">Save As SVG</span> -->
+            
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-
         crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
         crossorigin="anonymous"></script>
@@ -49,45 +54,16 @@
         <script type='text/javascript' src="js/drawing-oval.js"></script>
         <script type='text/javascript' src="js/color-bucket.js"></script>
         <script type='text/javascript' src="js/clearing-all.js"></script>
+        <script type='text/javascript' src="js/controlPoint.js"></script>
         <script type='text/javascript' src="js/eraser.js"></script>
+        <script type='text/javascript' src="js/functionSelector.js"></script>
         <script type='text/javascript' src="js/color-selector.js"></script>
         <script type='text/javascript' src="js/upload-image.js"></script>
-        <script type='text/javascript'>
-            $('#drawing-line').click(() => {
-                currentFunction = new DrawingLine(contextReal, contextDraft, canvasReal, canvasDraft);
-            });
-            $('#drawing-rectangle').click(() => {
-                currentFunction = new DrawingRectangle(contextReal, contextDraft);
-            });
-            $('#drawing-circle').click(() => {
-                currentFunction = new DrawingCircle(contextReal, contextDraft);
-            });
-            $('#drawing-oval').click(() => {
-                currentFunction = new DrawingOval(contextReal, contextDraft);
-            });
-            $('#color-bucket').click(() => {
-                currentFunction = new ColorBucket(canvasReal, contextReal);
-            });
-            $('#erasing').click(() => {
-                currentFunction = new Erasing(contextReal, contextDraft);
-            });  
-            $('#clearing').click(() => {
-                clearAll();
-            });
-
-            $('#drawing-polygon').click(() => {
-                    currentFunction = new DrawingPolygon(contextReal, contextDraft);
-            });
-
-            $('#color-selector').change((event) => {
-                    selectColor(event);
-            });
-                
-            $('#upload-image').change((event) => {
-                    uploadImage(contextReal, canvasReal, event);
-            });
-            currentFunction = new DrawingRectangle(contextReal, contextDraft);    
-            
-        </script>
+        <script type='text/javascript' src="js/save.js"></script>
+        <script type='text/javascript' src="js/color-dropper.js"></script>
+        <script type='text/javascript' src="js/jscolor.min.js"></script>
+        <!-- <script type='text/javascript' src="js/contextMenu/contextMenu.min.js"></script> -->
+        <!-- <script src="js/canvas2svg.js"></script> -->
+        
     </body>
 </html>
