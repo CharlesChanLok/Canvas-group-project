@@ -1,9 +1,10 @@
 class DrawingPolygon extends PaintFunction {
+
     constructor(contextReal, contextDraft) {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        this.doneSizing= false;
+        this.doneSizing = false;
         this.canMove = false;
         this.dragOrigDiff;
     }
@@ -12,30 +13,36 @@ class DrawingPolygon extends PaintFunction {
         if (!this.doneSizing) {
             this.orig = coord;
             console.log('centerPt:' + coord);
-        }else {
+        } else {
             this.dragOrigDiff = [coord[0] - this.orig[0], coord[1] - this.orig[1]];
             console.log(this.dragOrigDiff);
             if (Math.sqrt(Math.pow(this.dragOrigDiff[0], 2)
-            + Math.pow(this.dragOrigDiff[1], 2)) <= this.radius) {
+                + Math.pow(this.dragOrigDiff[1], 2)) <= this.radius) {
                 this.canMove = true;
             }
         };
     }
     onDragging(coord) {
         if (!this.doneSizing) {
-            this.radius = Math.sqrt(Math.pow((this.orig[0] - coord[0]), 2) 
-            + Math.pow((this.orig[1] - coord[1]), 2));
+            this.radius = Math.sqrt(Math.pow((this.orig[0] - coord[0]), 2)
+                + Math.pow((this.orig[1] - coord[1]), 2));
             this.drawPolygon(this.contextDraft, this.orig, this.radius)
         } else {
             if (this.canMove) {
-                    console.log('diff: ' + this.dragOrigDiff);
-                    console.log('new CenterPt: ' + [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]]);
-                    this.drawPolygon(this.contextDraft, [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]], this.radius)
-                    // this.orig[0] = coord[0];
-                    // this.orig[1] = coord[1];
-                }
+                console.log('diff: ' + this.dragOrigDiff);
+                console.log('new CenterPt: ' + [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]]);
+                this.drawPolygon(this.contextDraft, [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]], this.radius)
+
+                // this.orig[0] = coord[0];
+
+                // this.orig[1] = coord[1];
+
+            }
+
         }
+
     }
+
     onMouseMove() { }
     onMouseUp(coord) {
         if (!this.doneSizing) {
@@ -54,26 +61,29 @@ class DrawingPolygon extends PaintFunction {
 
     drawPolygon(context, coord, radius) {
         this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-        var sides = 3;
         var angle = (sides - 1) * 180;
         var coordinates = [],
-        index = 0;
+            index = 0;
 
-    for (index = 0; index < sides; index++) {
-        coordinates.push({x: coord[0] + this.radius * Math.cos(angle), y: coord[1] - this.radius * Math.sin(angle)});
-        angle += (2 * Math.PI) / sides;
+        for (index = 0; index < sides; index++) {
+            coordinates.push({ x: coord[0] + this.radius * Math.cos(angle), y: coord[1] - this.radius * Math.sin(angle) });
+            angle += (2 * Math.PI) / sides;
+        }
+
+
+        context.beginPath();
+        context.moveTo(coordinates[0].x, coordinates[0].y);
+        for (index = 1; index < sides; index++) {
+            context.lineTo(coordinates[index].x, coordinates[index].y);
+        }
+
+        context.closePath();
+        context.fill();
+
     }
 
-    context.beginPath();
-    context.moveTo(coordinates[0].x, coordinates[0].y);
-    for (index = 1; index < sides; index++) {
-        context.lineTo(coordinates[index].x, coordinates[index].y);
-    }
-
-    context.closePath();
-    context.fill();
 }
-    }
-    
 
-    
+
+
+

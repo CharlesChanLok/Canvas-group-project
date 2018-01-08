@@ -26,7 +26,6 @@ class DrawingLine extends PaintFunction {
             // console.log(this.ifOnPath(coord));
             // console.log('I am on path ge!')
         }
-         
     }
 
     onDragging(coord, event) { 

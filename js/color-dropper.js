@@ -15,7 +15,7 @@ class Dropper extends PaintFunction {
 
     dropColor(coord) {
         let color = this.context.getImageData(coord[0], coord[1], 1, 1);
-        console.log(color.data);
+        //console.log(color.data);
         contextReal.fillStyle = "rgb(" + color.data[0] + "," + color.data[1] + "," + color.data[2] + ")";
         contextDraft.fillStyle = "rgb(" + color.data[0] + "," + color.data[1] + "," + color.data[2] + ")";
         contextReal.strokeStyle = "rgb(" + color.data[0] + "," + color.data[1] + "," + color.data[2] + ")";

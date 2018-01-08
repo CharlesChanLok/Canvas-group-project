@@ -88,6 +88,11 @@ function encode_as_img_and_link(){
     // Works in Firefox 3.6 and Webit and possibly any browser which supports the data-uri
     $("body").append($("<a href-lang='image/svg+xml' href='data:image/svg+xml;base64,\n"+b64+"' title='file.svg'>Download</a>"));
    }
+<<<<<<< HEAD
+=======
+   
+
+>>>>>>> charlesBranch
    */
 
 
