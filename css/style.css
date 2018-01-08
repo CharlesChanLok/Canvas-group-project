@@ -88,7 +88,12 @@ ul {
     list-style-type: none;
     width: 3rem;
 }
-
+i {
+    padding: 0.3rem 1rem;
+}
+i:hover {
+    cursor: pointer;
+}
 li {
     margin: 0.35rem;
 }
