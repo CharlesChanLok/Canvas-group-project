@@ -27,6 +27,10 @@ $('#dropper').click(() => {
     currentFunction = new Dropper(contextReal);
 });
 
+$('#drawing-stline').click(() => {
+    currentFunction = new DrawingStline(contextReal, contextDraft);
+});
+
 $('#color_value').change(()=>{
     update();
 });
