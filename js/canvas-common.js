@@ -4,12 +4,19 @@ let canvasDraft = document.getElementById('canvas-draft');
 let contextDraft = canvasDraft.getContext('2d');
 let currentFunction;
 let dragging = false;
+let tempSave = [];
 contextReal.strokeStyle = "#000";
 contextReal.fillStyle = "#000";
 contextDraft.strokeStyle = "#000";
 contextDraft.fillStyle = "#000";
 
 
+
+$('#canvas-container').bind('keydown', function (event) {
+    let key = event.which;
+    console.log(key);
+    currentFunction.onKeyDown(key);
+});
 $('#canvas-draft').mousedown(function (e) {
     let mouseX = e.pageX - this.offsetLeft;
     let mouseY = e.pageY - this.offsetTop;
@@ -52,3 +59,4 @@ class PaintFunction {
     onMouseLeave() { }
     onMouseEnter() { }
 }    
+
