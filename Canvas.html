@@ -17,110 +17,84 @@
 
 
 <body>
-    <div id="flex-container">
-        <!-- New Class Function -->
-        <div id="toolbox">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    File
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <a class="dropdown-item bg-light fa fa-download fa-1x" id="save-PNG">Save as PNG</a>
-                    <a class="dropdown-item bg-light fa fa-download fa-1x" id="save-JPEG">Save as JPEG</a>
-                    <a class="dropdown-item">
-                        <input type="file" class="btn" id="upload-image">
-                    </a>
-                </div>
-                <ul>
-                    <li class="fa fa-pencil fa-2x" id="drawing-line"></li>
-                    <li class="fa fa-paint-brush fa-2x" id="brush-radial-gradient"></li>
-                    <li id="drawing-stline">
-                        <img src="img/tool/straight-line.jpg">
-                    </li>
-                    <li class="fa fa-square fa-2x" id="drawing-rectangle"></li>
-                    <li class="fa fa-circle fa-2x" id="drawing-circle"></li>
-                    <li id="drawing-oval">
-                        <img src="img/tool/oval.png">
-                    </li>
-                    <li id="drawing-polygon">
-                        <img src="img/tool/polygon.png">
-                    </li>
-                    <li class="fa fa-flask fa-2x" id="color-bucket"></li>
-                    <li class="fa fa-eraser fa-2x" id="erasing"></li>
-
-                    <li class="fa fa-trash fa-2x" id="clearing"></li>
-                    <li>
-                        <input name="color2" type="hidden" id="color_value" value="000">
-                        <button class="jscolor {valueElement: 'color_value'}" style="width: 2rem; height:23px;">
-                        </button>
-                    </li>
-                    <li class="fa fa-eyedropper fa-2x" id="dropper"></li>
-                    <!--
-                    <h6>Line Width</h6>
-                    <li>
-                        <i class="fa fa-plus fa-1x"></i>
-                        <i class="fa fa-minus fa-1x"></i>
-                        <input type="range" id="line-width line-range" min="1" max="9" value="1" class="slider">
-                    </li>
-                    <h6>Polygon Sides</h6>
-                    <li>
-                    <i class="fa fa-plus fa-1x"></i>
-                    <i class="fa fa-minus fa-1x"></i>
-                    <input type="range" id="sides sides-range" min="3" max="9" value="3" class="slider">
-                    </li>
-                -->
-                </ul>
-                <div class="slidecontainer">
-                        <h6>Line Width</h6>
-                    <i class="fa fa-minus fa-1x"></i>
-                    <i class="fa fa-plus fa-1x"></i>
-                        <input type="range" min="1" max="9" value="3" class="slider" id="line-width">
-                        <p>Width: <span id="lineWidth"></span></p>
-                </div>
-                <div class="slidecontainer">
-                        <h6>Polygon Sides</h6>
-                    <i class="fa fa-minus fa-1x"></i>
-                    <i class="fa fa-plus fa-1x"></i>
-                        <input type="range" min="1" max="9" value="3" class="slider" id="sides">
-                        <p>Side(s): <span id="sideValue"></span></p>
-             </div>
-
+    <div id="tool-wrapper">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                File
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <a class="dropdown-item bg-light fa fa-download fa-1x" id="save-PNG">Save as PNG</a>
+                <a class="dropdown-item bg-light fa fa-download fa-1x" id="save-JPEG">Save as JPEG</a>
+                <a class="dropdown-item">
+                    <input type="file" class="btn" id="upload-image">
+                </a>
             </div>
-            <div id="canvasbox">
-                <canvas id="canvas-real" class="canvas" width='1280px' height='720px'></canvas>
-                <canvas id="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
-            </div>
-            <!--
-                <div class="fa fa-pencil fa-2x" id="drawing-line"></div>
-                <div class="fa fa-paint-brush fa-2x" id="drawing-stline"></div>
-                <div class="fa fa-square fa-2x" id="drawing-rectangle"></div>
-                <div class="fa fa-circle fa-2x" id="drawing-circle"></div>
-                <div class="fa fa-circle-o fa-2x" id="drawing-oval"></div>
-                <div class="fa fa-eraser fa-2x" id="drawing-polygon">polygon</div>
-                <div class="fa fa-flask fa-2x" id="color-bucket"> </div>
-                <div class="fa fa-eraser fa-2x" id="erasing"></div>
-                <div>
+            <ul class="flex-container">
+                <li class="fa fa-pencil fa-2x tool-item" id="drawing-line"></li>
+                <li class="tool-item" id="drawing-curveline">
+                    <img src="img/tool/curve.png">
+                </li>
+                <li class="fa fa-paint-brush fa-2x tool-item" id="brush-radial-gradient"></li>
+                <li id="drawing-stline">
+                    <img src="img/tool/line.png">
+                </li>
+                <li class="fa fa-square fa-2x tool-item" id="drawing-rectangle"></li>
+                <li class="fa fa-circle fa-2x tool-item" id="drawing-circle"></li>
+                <li id="drawing-oval" class="tool-item">
+                    <img src="img/tool/ovalSolid.png">
+                </li>
+                <li id="drawing-polygon" class="tool-item">
+                    <img src="img/tool/polygonSolid.png">
+                </li>
+                <li class="fa fa-flask fa-2x tool-item" id="color-bucket"></li>
+                <li class="fa fa-eyedropper fa-2x tool-item" id="dropper"></li>
+                <li class="fa fa fa-cut fa-2x tool-item" id="capture"></li>
+    
+                <li class="fa fa-eraser fa-2x tool-item" id="erasing"></li>
+                <li class="fa fa-trash fa-2x tool-item" id="clearing"></li>
+                <li class="fa fa-undo fa-2x tool-item" id="undo"></li>
+                <li class="fa fa-repeat fa-2x tool-item" id="redo"></li>
+                <li class="tool-item">
                     <input name="color2" type="hidden" id="color_value" value="000">
-                    <button class="jscolor {valueElement: 'color_value'}" style="width:50px; height:20px;">
+                    <button class="jscolor {valueElement: 'color_value'}" style="width: 30px; height:23px;">
                     </button>
-                </div>
-                <div class="fa fa-trash fa-2x" id="clearing"></div>
-                <div class="fa fa-eyedropper fa-2x" id="dropper"></div>
-                <div>
-                    <input type="range" id="line-width" min="1" max="30" value="1">
-                </div>
-                <div>
-                    <input type="range" id="sides" min="3" max="20" value="3">
-                </div>
+                </li>
+    
+    
+            </ul>
+            <div class="slidecontainer">
+                <h6>Line Width</h6>
+                <span>
+                    <i class="fa fa-minus fa-1x"></i>
+                </span>
+                <input type="range" min="1" max="9" value="3" class="slider" id="line-width">
+                <span>
+                    <i class="fa fa-plus fa-1x"></i>
+                </span>
+                <p>Width:
+                    <span id="lineWidth"></span>
+                </p>
+            </div>
+            <div class="slidecontainer">
+                <h6>Polygon Sides</h6>
+    
+                <span>
+                    <i class="fa fa-minus fa-1x"></i>
+                </span>
+                <input type="range" min="1" max="9" value="3" class="slider" id="sides">
+                <span>
+                    <i class="fa fa-plus fa-1x"></i>
+                </span>
+                <p>Side(s):
+                    <span id="sideValue"></span>
+                </p>
             </div>
             <div id="canvasbox">
                 <canvas id="canvas-real" class="canvas" width='1280px' height='720px'></canvas>
                 <canvas id="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
             </div>
         </div>
-    </div>
--->
 
             <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
                 crossorigin="anonymous"></script>
@@ -147,7 +121,9 @@
             <script type='text/javascript' src="js/jscolor.min.js"></script>
             <script type='text/javascript' src="js/slider.js"></script>
             <script type='text/javascript' src="js/brush-radial-gradient.js"></script>
+            <script type='text/javascript' src="js/cursor.js"></script>
             <script type='text/javascript' src="js/resize-window.js"></script>
+
             
             <!-- <script type='text/javascript' src="js/contextMenu/contextMenu.min.js"></script> -->
             <!-- <script src="js/canvas2svg.js"></script> -->
