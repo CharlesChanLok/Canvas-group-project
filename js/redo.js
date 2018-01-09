@@ -1,16 +1,21 @@
-let count = tempSave.length;
-function tempSave() {
+let tempSave = [];
+let count;
+function screenSave() {
     let newSave = contextReal.getImageData(0, 0, canvasReal.width, canvasReal.height);
     tempSave.push(newSave);
-    (tempSave.length > 10) ? tempSave.shift() : null;
+    (tempSave.length > 21) ? tempSave.shift() : null;
+    count = tempSave.length;
 }
+
+screenSave();
 
 $('#undo').click(() => {
     (count > 0 )? count -= 1 : count = 0;
+    console.log(count);
     contextReal.putImageData(tempSave[count], 0, 0);
 })
 
 $('#redo').click(() => {
-    (count < tempSave )? count += 1 : count = tempSave.length;
+    (count < tempSave.length - 1)? count += 1 : count = tempSave.length - 1;
     contextReal.putImageData(tempSave[count], 0, 0);
 })

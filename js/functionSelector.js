@@ -31,6 +31,10 @@ $('#drawing-stline').click(() => {
     currentFunction = new DrawingStline(contextReal, contextDraft);
 });
 
+$('#capture').click(() => {
+    currentFunction = new Capture(contextReal, contextDraft);
+});
+
 $('#color_value').change(()=>{
     update();
 });

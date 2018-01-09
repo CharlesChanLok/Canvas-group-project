@@ -44,8 +44,8 @@ class DrawingRectangle extends PaintFunction {
         } else {
             this.dragOrigDiff = [coord[0] - this.orig[0], coord[1] - this.orig[1]];
             this.resizeMode = null;
-            this.inAreaX = this.inArea(this.rectWidth, this.dragOrigDiff[0]);
-            this.inAreaY = this.inArea(this.rectHeight, this.dragOrigDiff[1]);
+            this.inAreaX = inArea(this.rectWidth, this.dragOrigDiff[0]);
+            this.inAreaY = inArea(this.rectHeight, this.dragOrigDiff[1]);
             this.canMove = (this.inAreaX && this.inAreaY);
         }
     }
@@ -132,11 +132,11 @@ class DrawingRectangle extends PaintFunction {
         }
     }
 
-    inArea(dimension, diff) {
-        if (dimension > 0) {
-            return (diff <= dimension && diff >= 0);
-        } else {
-            return (diff >= dimension && diff <= 0);
-        }
-    }
+    // inArea(dimension, diff) {
+    //     if (dimension > 0) {
+    //         return (diff <= dimension && diff >= 0);
+    //     } else {
+    //         return (diff >= dimension && diff <= 0);
+    //     }
+    // }
 }

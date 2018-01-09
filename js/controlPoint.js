@@ -28,3 +28,11 @@ function drawCircle(context, coord) {
     context.fill();
     contextDraft.fillStyle = '#' + document.getElementById('color_value').value;
 }
+
+function inArea(dimension, diff) {
+    if (dimension > 0) {
+        return (diff <= dimension && diff >= 0);
+    } else {
+        return (diff >= dimension && diff <= 0);
+    }
+}
