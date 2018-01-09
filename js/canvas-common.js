@@ -4,11 +4,16 @@ let canvasDraft = document.getElementById('canvas-draft');
 let contextDraft = canvasDraft.getContext('2d');
 let currentFunction;
 let dragging = false;
-let tempSave = [];
 contextReal.strokeStyle = "#000";
-contextReal.fillStyle = "#000";
 contextDraft.strokeStyle = "#000";
-contextDraft.fillStyle = "#000";
+contextReal.fillStyle = "#000"
+contextDraft.fillStyle = "#000"; //hexdeciaml color code for test
+contextReal.lineWidth = 3;
+contextDraft.lineWidth = 3;
+let sides = 3;
+let rgb = {r: 0, g: 0, b: 0};
+//let isdrawing = false;
+
 
 
 

@@ -38,4 +38,8 @@ class Erasing extends PaintFunction {
             this.old = { x: x, y: y };
         }
     }
+
+    onMouseLeave() {
+            contextReal.globalComopositeOperation = "source-over";
+    }
 }

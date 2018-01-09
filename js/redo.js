@@ -7,7 +7,7 @@ function screenSave() {
     count = tempSave.length;
 }
 
-screenSave();
+$(window).onload = screenSave();
 
 $('#undo').click(() => {
     (count > 0 )? count -= 1 : count = 0;

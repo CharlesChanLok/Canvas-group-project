@@ -89,6 +89,7 @@ class DrawingRectangle extends PaintFunction {
         }
     }
 
+    onMouseLeave(){};
     // onMouseLeave(coord) {
     //     if (this.doneSizing) {
     //         this.drawRect(this.contextReal, this.orig, this.rectWidth, this.rectHeight);

@@ -31,8 +31,14 @@ $('#drawing-stline').click(() => {
     currentFunction = new DrawingStline(contextReal, contextDraft);
 });
 
+
 $('#capture').click(() => {
     currentFunction = new Capture(contextReal, contextDraft);
+});
+
+$('#brush-radial-gradient').click(() => {
+    currentFunction = new BrushRadialGradient(contextReal, contextDraft);
+
 });
 
 $('#color_value').change(()=>{
@@ -55,7 +61,7 @@ $('#save-SVG').click(() => {
     exportCanvasAsSVG();
 });
 
-currentFunction = new DrawingRectangle(contextReal, contextDraft);
+currentFunction = new DrawingLine(contextReal, contextDraft);
 // confirm leaving page
 window.onbeforeunload = function () {
     return true;

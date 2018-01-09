@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class Capture extends PaintFunction {
     constructor(contextReal, contextDraft) {
         super();
@@ -68,28 +67,4 @@ class Capture extends PaintFunction {
         context.setLineDash([]);
     }
 }
-=======
-class Capture extends PlainFunction {
-    constructor(contextReal, contextDraft){
-        super();
-        this.context = contextReal;
-        this.convas = canvasReal;
-        this.orig = null;
-        this.capWidth = null;
-        this.capHeight = null;
-    }
-    onMouseDown(coord) {
-        this.orig = coord;
-     }
-    onDragging(coord) {
-        this.capWidth = coord[0] - this.orig[0];
-        this.capHeight = coord[1] - this.orig[1];
-     }
-    onMouseMove() { }
-    onMouseUp() {
-        contextReal.getImageData(this.orig[0], this.orig[1], this.capWidth, this.capHeight);
-    }
-    onMouseLeave() { }
-    onMouseEnter() { }
-}
->>>>>>> 0e91c5a4a94ec8f609df66c0b2e1df63afbe2ccb
+
