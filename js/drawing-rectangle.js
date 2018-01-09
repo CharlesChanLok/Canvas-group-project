@@ -131,12 +131,4 @@ class DrawingRectangle extends PaintFunction {
             drawControlPt(this.controlPointArray, this.orig, this.rectWidth, this.rectHeight);
         }
     }
-
-    // inArea(dimension, diff) {
-    //     if (dimension > 0) {
-    //         return (diff <= dimension && diff >= 0);
-    //     } else {
-    //         return (diff >= dimension && diff <= 0);
-    //     }
-    // }
 }

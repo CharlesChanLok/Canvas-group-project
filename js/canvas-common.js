@@ -4,6 +4,7 @@ let canvasDraft = document.getElementById('canvas-draft');
 let contextDraft = canvasDraft.getContext('2d');
 let currentFunction;
 let dragging = false;
+let tempSave = [];
 contextReal.strokeStyle = "#000";
 contextReal.fillStyle = "#000";
 contextDraft.strokeStyle = "#000";
