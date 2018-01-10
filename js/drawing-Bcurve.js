@@ -214,6 +214,7 @@ class DrawingBcurve extends PaintFunction{  //using one canvas draft only
             this.quadcoord.end.x,this.quadcoord.end.y);
         this.contextReal.stroke();
         this.canvas_log.saveState();
+        screenSave();
 
         //clear the Draft canvas and redraw with new poistion
         this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);

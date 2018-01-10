@@ -13,14 +13,14 @@ class DrawingOval extends PaintFunction {
         this.canMove = false;
         this.shiftOn = false;
         this.dragOrigDiff = null;
-        this.inAreaX = null;
-        this.inAreaY = null;
     }
 
     onMouseDown(coord, event) {
+        if (this.controlPointArray.length !== 0) {
+            this.onControlPt = ifOnPath(this.controlPointArray, coord);
+        }
         if (!this.doneSizing) {
             this.orig = coord;
-            // console.log('centerPt:' + coord);
         } else if (this.onControlPt == this.controlPointArray[6]) {
             this.resizeMode = 'right';
         } else if (this.onControlPt == this.controlPointArray[1]) {
@@ -40,8 +40,6 @@ class DrawingOval extends PaintFunction {
         } else {
             this.resizeMode = null;
             this.dragOrigDiff = [coord[0] - this.orig[0], coord[1] - this.orig[1]];
-            // console.log(this.dragOrigDiff);
-            // console.log(Math.abs(this.dragOrigDiff[0]) <= this.radiusX && Math.abs(this.dragOrigDiff[1]) <= this.radiusY);
             if (Math.abs(this.dragOrigDiff[0]) <= this.radiusX && Math.abs(this.dragOrigDiff[1]) <= this.radiusY) {
                 this.canMove = true;
             };
@@ -52,8 +50,6 @@ class DrawingOval extends PaintFunction {
         if (!this.doneSizing) {
             this.radiusX = Math.abs((this.orig[0] - coord[0]));
             this.radiusY = Math.abs((this.orig[1] - coord[1]));
-            // console.log(this.radiusX);
-            // console.log(this.radiusY);
             this.drawOval(this.contextDraft, this.orig, this.radiusX, this.radiusY);
         } else if (this.resizeMode === 'right' || this.resizeMode === 'left') {
             this.radiusX = Math.abs(coord[0] - this.orig[0]);
@@ -74,11 +70,7 @@ class DrawingOval extends PaintFunction {
             }
     }
 
-    onMouseMove(coord) {
-        if (this.controlPointArray.length !== 0) {
-            this.onControlPt = ifOnPath(this.controlPointArray, coord);
-        }
-    }
+    onMouseMove(coord) { }
 
     onMouseUp(coord) {
         if (!this.doneSizing) {
@@ -96,7 +88,7 @@ class DrawingOval extends PaintFunction {
 
     onKeyDown(key) {
         console.log(key);
-        if (this.doneSizing && key == 13) {
+        if (this.doneSizing && (key == 13 || key == 'doubletap')) {
             this.drawOval(this.contextReal, this.orig, this.radiusX, this.radiusY);
             this.rectWidth = 0;
             this.rectHeight = 0;
@@ -106,8 +98,6 @@ class DrawingOval extends PaintFunction {
             this.doneSizing = false;
             this.canMove = false;
             this.dragOrigDiff = null;
-            this.inAreaX = null;
-            this.inAreaY = null;
         } else if (key == 16) {
             (this.shiftOn)? this.shiftOn = false : this.shiftOn = true;
         }

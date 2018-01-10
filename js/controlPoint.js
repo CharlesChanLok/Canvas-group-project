@@ -19,14 +19,14 @@ function drawControlPt(controlPointArray, centerPt, width, height) {
     controlPointArray.forEach(controlPt => {
     drawCircle(contextDraft, controlPt);
     });
+    drawDotLine(contextDraft, centerPt, width, height);
 }
 
 function drawCircle(context, coord) {
-    context.fillStyle = '#333';
+    context.fillStyle = '#aaa';
     context.beginPath();
     context.arc(coord[0], coord[1], 10, 0, 2 * Math.PI);
     context.fill();
-    contextDraft.fillStyle = '#' + document.getElementById('color_value').value;
 }
 
 function inArea(dimension, diff) {
@@ -35,4 +35,16 @@ function inArea(dimension, diff) {
     } else {
         return (diff >= dimension && diff <= 0);
     }
+}
+
+
+function drawDotLine(context, coord, width, height) {
+    context.beginPath();
+    context.strokeStyle = '#aaa';
+    context.setLineDash([10]);
+    context.rect(coord[0], coord[1], width, height);
+    context.stroke();
+    context.setLineDash([]);
+    context.fillStyle = '#' + document.getElementById('color_value').value;
+    context.strokeStyle = '#' + document.getElementById('color_value').value;
 }

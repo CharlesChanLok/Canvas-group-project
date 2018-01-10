@@ -4,13 +4,13 @@ class ColorBucket extends PaintFunction {
         this.context = contextReal;
         this.canvas = canvasReal;
         this.imgDataArray = contextReal.getImageData(0, 0, canvasReal.width, canvasReal.height);
-        let oldR, oldG, oldB, OldA; 
+        let oldR, oldG, oldB, OldA;
     }
-    
+
     onMouseDown(coord, event) {
         let pixelStack = [coord];
-        let pixelStart = (coord[1] * this.canvas.width + coord[0] ) * 4;
-        let x,y;
+        let pixelStart = (coord[1] * this.canvas.width + coord[0]) * 4;
+        let x, y;
         // this.context.fillStyle = '#345678';
         let hex = this.context.fillStyle;
         console.log(this.context.fillStyle);
@@ -24,45 +24,45 @@ class ColorBucket extends PaintFunction {
         this.oldR = this.imgDataArray.data[pixelStart];
         this.oldG = this.imgDataArray.data[pixelStart + 1];
         this.oldB = this.imgDataArray.data[pixelStart + 2];
-        this.oldA = this.imgDataArray.data[pixelStart +3];
+        this.oldA = this.imgDataArray.data[pixelStart + 3];
 
-        // console.log(this.oldR);
-        // console.log(this.oldG);
-        // console.log(this.oldB);
-        // console.log(this.oldA);
+        console.log(this.oldR);
+        console.log(this.oldG);
+        console.log(this.oldB);
+        console.log(this.oldA);
 
         // console.log(!(this.oldR == fillR && this.oldG == fillG && this.oldB == fillB && this.oldA == 255));
         if (!(fillR == this.oldR && fillG == this.oldG && fillB == this.oldB && this.oldA == opacity)) {
-            while(pixelStack.length) {
+            while (pixelStack.length) {
                 let newPixel = pixelStack.pop();
                 x = newPixel[0];
                 y = newPixel[1];
                 let pixelPos = (y * this.canvas.width + x) * 4;
-                
+
                 while (y >= 0 && this.matchStartColor(pixelPos)) {
                     pixelPos -= this.canvas.width * 4;
                     y--;
                 }
-    
+
                 pixelPos += this.canvas.width * 4;
                 ++y;
                 let leftDone = false;
                 let rightDone = false;
-                
-                while (y <= this.canvas.height-1 && this.matchStartColor(pixelPos)) {
+
+                while (y <= this.canvas.height - 1 && this.matchStartColor(pixelPos)) {
                     this.colorPixel(pixelPos, fillR, fillG, fillB, opacity);
-    
+
                     if (x > 0) {
-                        if (this.matchStartColor(pixelPos - 4)){
+                        if (this.matchStartColor(pixelPos - 4)) {
                             if (!leftDone) {
-                                pixelStack.push([x-1, y]);
+                                pixelStack.push([x - 1, y]);
                                 leftDone = true;
                             }
-                        }else if (leftDone) {
+                        } else if (leftDone) {
                             leftDone = false;
                         }
                     }
-    
+
                     if (x <= this.canvas.width - 1) {
                         if (this.matchStartColor(pixelPos + 4)) {
                             if (!rightDone) {
@@ -75,35 +75,35 @@ class ColorBucket extends PaintFunction {
                     }
                     y++;
                     pixelPos += this.canvas.width * 4;
-    
+
                 }
             }
 
         }
         this.context.putImageData(this.imgDataArray, 0, 0);
-        
+        screenSave();
     }
 
-    matchStartColor(pos) { 
+    matchStartColor(pos) {
         let NewR = this.imgDataArray.data[pos];
-        let NewG = this.imgDataArray.data[pos+1];
-        let NewB = this.imgDataArray.data[pos+2];
-        let NewA = this.imgDataArray.data[pos+3];
-        return (NewR == this.oldR && NewG == this.oldG && NewB == this.oldB && NewA <= this.oldA);       
+        let NewG = this.imgDataArray.data[pos + 1];
+        let NewB = this.imgDataArray.data[pos + 2];
+        let NewA = this.imgDataArray.data[pos + 3];
+        return (NewR == this.oldR && NewG == this.oldG && NewB == this.oldB && NewA == this.oldA);
     }
 
-   colorPixel(pos,colorR, colorG, colorB, opacity) {
+    colorPixel(pos, colorR, colorG, colorB, opacity) {
         this.imgDataArray.data[pos] = colorR;
-        this.imgDataArray.data[pos+1] = colorG;
-        this.imgDataArray.data[pos+2] = colorB;
-        this.imgDataArray.data[pos+3] = opacity;
+        this.imgDataArray.data[pos + 1] = colorG;
+        this.imgDataArray.data[pos + 2] = colorB;
+        this.imgDataArray.data[pos + 3] = opacity;
     }
 
-    
+
 
     onDragging() { }
     onMouseMove() { }
-    onMouseUp() {}
+    onMouseUp() { }
     onMouseLeave() { }
     onMouseEnter() { }
 }

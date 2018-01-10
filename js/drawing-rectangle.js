@@ -17,6 +17,9 @@ class DrawingRectangle extends PaintFunction {
     }
 
     onMouseDown(coord, event) {
+        if (this.controlPointArray.length !== 0) {
+            this.onControlPt = ifOnPath(this.controlPointArray, coord);
+        }
         if (!this.doneSizing) {
             this.orig = coord;
         } else if (this.onControlPt == this.controlPointArray[6]) {
@@ -51,8 +54,7 @@ class DrawingRectangle extends PaintFunction {
     }
 
     onDragging(coord, event) {
-        // console.log(this.onControlPt);
-        // console.log(this.doneSizing);
+        console.log(this.resizeMode);
         if (!this.doneSizing) {
             this.rectWidth = coord[0] - this.orig[0];
             this.rectHeight = coord[1] - this.orig[1];
@@ -69,18 +71,16 @@ class DrawingRectangle extends PaintFunction {
             this.drawRect(this.contextDraft, this.orig, this.rectWidth, this.rectHeight)
         } else if (this.canMove) {
                     this.orig = [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]];
-                    //this.controlPointArray = [];
                     this.drawRect(this.contextDraft, this.orig, this.rectWidth, this.rectHeight);
                 }
     }
     
-    onMouseMove(coord) { 
-        if (this.controlPointArray.length !== 0) {
-            this.onControlPt = ifOnPath(this.controlPointArray, coord);
-        }
-    }
+    onMouseMove() { }
 
     onMouseUp(coord) {
+        if (currentMode === 'mobile') {
+            this.resizeMode = null;
+        }
         if (!this.doneSizing) {
             this.doneSizing = true;
         } else if (this.canMove) {
@@ -90,26 +90,10 @@ class DrawingRectangle extends PaintFunction {
     }
 
     onMouseLeave(){};
-    // onMouseLeave(coord) {
-    //     if (this.doneSizing) {
-    //         this.drawRect(this.contextReal, this.orig, this.rectWidth, this.rectHeight);
-    //         this.rectWidth = 0;
-    //         this.rectHeight = 0;
-    //         this.controlPointArray = [];
-    //         this.onControlPt = null;
-    //         this.resizeMode = null;
-    //         this.doneSizing = false;
-    //         this.canMove = false;
-    //         this.dragOrigDiff = null;
-    //         this.inAreaX = null;
-    //         this.inAreaY = null;
-    //     }
-    // }
-    
     onMouseEnter() {}
     
     onKeyDown(key) {
-        if (this.doneSizing && key == 13) {
+        if (this.doneSizing && (key == 13 || key == 'doubletap')) {
             this.drawRect(this.contextReal, this.orig, this.rectWidth, this.rectHeight);
             this.rectWidth = 0;
             this.rectHeight = 0;

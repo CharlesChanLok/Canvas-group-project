@@ -13,6 +13,7 @@ function update() {
 
     let hex = document.getElementById('color_value').value;
     contextDraft.fillStyle = '#' + hex;
+    contextDraft.strokeStyle = '#' + hex;
     contextReal.fillStyle = '#' + hex;
     contextReal.strokeStyle = '#' + hex;
     rgb = hexToRgb(hex);

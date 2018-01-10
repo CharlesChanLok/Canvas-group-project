@@ -5,7 +5,7 @@ class DrawingPolygon extends PaintFunction {
         this.contextDraft = contextDraft;
         this.doneSizing= false;
         this.canMove = false;
-        this.dragOrigDiff;
+        this.dragOrigDiff = null;
     }
 
     onMouseDown(coord) {
@@ -44,20 +44,22 @@ class DrawingPolygon extends PaintFunction {
         } else {
         }
     }
-    onMouseLeave(coord) {
-        if (this.canMove) {
-            this.drawPolygon(this.contextReal, this.orig, this.radius)
-            this.radius = 0;
+    onMouseLeave() { }
+    onMouseEnter() { }
+
+    onKeyDown(key) {
+        if (this.doneSizing && (key == 13 || key == 'doubletap')) {
+            this.drawPolygon(this.contextReal, this.orig, this.radius);
             this.doneSizing = false;
             this.canMove = false;
+            this.dragOrigDiff = null;
         }
-     }
-    onMouseEnter() { }
+    }
 
     drawPolygon(context, coord, radius) {
         this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
         
-        var angle = (sides - 1) * 180;
+        var angle = ((sides - 2) * 180) / sides;
         var coordinates = [],
         index = 0;
 

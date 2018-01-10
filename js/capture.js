@@ -4,6 +4,7 @@ class Capture extends PaintFunction {
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
         this.orig = null;
+        this.newOrig = [0, 0];
         this.capWidth = null;
         this.capHeight = null;
         this.doneSizing = false;
@@ -31,32 +32,27 @@ class Capture extends PaintFunction {
         } else if (this.canMove) {
             this.orig = [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]];
             this.drawDotRect(this.contextDraft, this.orig, this.capWidth, this.capHeight);
-            contextDraft.putImageData(this.imgData, this.orig[0], this.orig[1]);
+            this.drawCapture(this.contextDraft, this.orig, this.capWidth, this.capHeight);
         }
     }
     
     onMouseMove() { }
     
     onMouseUp(coord) {
-        if (!this.doneSizing) {
-            this.doneSizing = true;
+        if (!this.doneSizing && !this.canMove) {
             this.imgData = contextReal.getImageData(this.orig[0], this.orig[1], this.capWidth, this.capHeight);
-            let newCanvas = $("<canvas>")
-                .attr("width", Math.abs(this.capWidth))
-                .attr("height", Math.abs(this.capHeight))[0];
-            newCanvas.getContext("2d").putImageData(this.imgData, 0, 0);
-            this.contextReal.clearRect(this.orig[0], this.orig[1], this.capWidth, this.capHeight);
-            this.contextDraft.drawImage(newCanvas, this.orig[0], this.orig[1]);
-        } else if (this.canMove) {
-            this.canMove = false;
-            this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-            this.contextDraft.putImageData(this.imgData, this.orig[0], this.orig[1]);
+            this.drawCapture(this.contextDraft, this.orig, this.capWidth, this.capHeight);
+            this.doneSizing = true;
         }
     }
 
     onMouseLeave() { }
     onMouseEnter() { }
-    onKeyDown() { }
+    onKeyDown(key) {
+        if (this.doneSizing && (key == 13 || key == 'doubletap')) {
+            this.drawCapture(this.contextReal, this.orig, this.capWidth, this.capHeight);
+        }
+    }
 
     drawDotRect(context, coord, width, height) {
         this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
@@ -65,6 +61,22 @@ class Capture extends PaintFunction {
         context.rect(coord[0], coord[1], width, height);
         context.stroke();
         context.setLineDash([]);
+    }
+    
+    drawCapture(context, orig, width, height) { 
+        if(context == this.contextReal) {
+            this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+        }
+        let newCanvas = $("<canvas>")
+            .attr("width", Math.abs(width))
+            .attr("height", Math.abs(height))[0];
+        newCanvas.getContext("2d").putImageData(this.imgData, 0, 0);
+        if (!this.doneSizing) {
+            this.contextReal.clearRect(orig[0], orig[1], width, height);
+        };
+        (width > 0) ? this.newOrig[0] = orig[0] : this.newOrig[0] = orig[0] + width;
+        (height > 0) ? this.newOrig[1] = orig[1] : this.newOrig[1] = orig[1] + height;
+        context.drawImage(newCanvas, this.newOrig[0], this.newOrig[1]);
     }
 }
 
