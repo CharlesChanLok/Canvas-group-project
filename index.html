@@ -12,7 +12,6 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet" type='text/css'>
-    <link href="js/contextMenu/contextMenu.min.css" rel="stylesheet" type='text/css'>
 </head>
 
 <body>
@@ -30,66 +29,65 @@
                 </a>
             </div>
             <ul class="flex-container">
-                <li class="fa fa-pencil fa-2x tool-item" id="drawing-line"></li>
-                <li class="tool-item" id="drawing-curveline">
-                    <img src="img/tool/curve.png">
+                <li class="fa fa-pencil fa-2x tool-item" aria-hidden="true" id="drawing-line"></li>
+                <li class="tool-item" aria-hidden="true" id="drawing-Q-curve">
+                    <img src="img/tool/q-curve.png">
                 </li>
-                <li class="fa fa-paint-brush fa-2x tool-item" id="brush-radial-gradient"></li>
+                <li class="tool-item" aria-hidden="true" id="drawing-Bcurve">
+                    <img src="img/tool/b-curve.png">
+                </li>
+                <li class="fa fa-paint-brush fa-2x tool-item" aria-hidden="true" id="brush-radial-gradient"></li>
                 <li id="drawing-stline">
                     <img src="img/tool/line.png">
                 </li>
-                <li class="fa fa-square fa-2x tool-item" id="drawing-rectangle"></li>
-                <li class="fa fa-circle fa-2x tool-item" id="drawing-circle"></li>
-                <li id="drawing-oval" class="tool-item">
-                    <img src="img/tool/ovalSolid.png">
+                <li class="fa fa-square fa-2x tool-item" aria-hidden="true" id="drawing-rectangle"></li>
+                <li class="fa fa-circle fa-2x tool-item" aria-hidden="true" id="drawing-circle"></li>
+                <li id="drawing-oval" aria-hidden="true" class="tool-item">
+                    <img src="img/tool/oval.png">
                 </li>
-                <li id="drawing-polygon" class="tool-item">
-                    <img src="img/tool/polygonSolid.png">
+                <li id="drawing-polygon" aria-hidden="true" class="tool-item">
+                    <img src="img/tool/polygon.png">
                 </li>
-                <li class="fa fa-flask fa-2x tool-item" id="color-bucket"></li>
-                <li class="fa fa-eyedropper fa-2x tool-item" id="dropper"></li>
-                <li class="fa fa fa-cut fa-2x tool-item" id="capture"></li>
-    
-                <li class="fa fa-eraser fa-2x tool-item" id="erasing"></li>
-                <li class="fa fa-trash fa-2x tool-item" id="clearing"></li>
-                <li class="fa fa-undo fa-2x tool-item" id="undo"></li>
-                <li class="fa fa-repeat fa-2x tool-item" id="redo"></li>
+                <li class="fa fa-flask fa-2x tool-item" aria-hidden="true" id="color-bucket"></li>
+                <li class="fa fa-eyedropper fa-2x tool-item" aria-hidden="true" id="dropper"></li>
+                <li class="fa fa fa-cut fa-2x tool-item" aria-hidden="true" id="capture"></li>
+                <li class="fa fa-eraser fa-2x tool-item" aria-hidden="true" id="erasing"></li>
+                <li class="fa fa-trash fa-2x tool-item" aria-hidden="true" id="clearing"></li>
+                <li class="fa fa-undo fa-2x tool-item" aria-hidden="true" id="undo"></li>
+                <li class="fa fa-repeat fa-2x tool-item" aria-hidden="true" id="redo"></li>
                 <li class="tool-item">
                     <input name="color2" type="hidden" id="color_value" value="000">
-                    <button class="jscolor {valueElement: 'color_value'}" style="width: 30px; height:23px;">
+                    <button class="jscolor {valueElement: 'color_value'}" style="width: 30px; height:30px;">
                     </button>
                 </li>
     
     
             </ul>
             <div class="slidecontainer">
-                <h6>Line Width</h6>
                 <span>
-                    <i class="fa fa-minus fa-1x"></i>
+                    <i class="fa fa-minus fa-1x" aria-hidden="true"></i>
                 </span>
-                <input type="range" min="1" max="9" value="3" class="slider" id="line-width">
+                <input type="range" min="1" max="15" value="3" class="slider" id="line-width">
                 <span>
-                    <i class="fa fa-plus fa-1x"></i>
+                    <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
                 </span>
                 <p>Width:
                     <span id="lineWidth"></span>
                 </p>
             </div>
             <div class="slidecontainer">
-                <h6>Polygon Sides</h6>
-    
                 <span>
-                    <i class="fa fa-minus fa-1x"></i>
+                    <i class="fa fa-minus fa-1x" aria-hidden="true"></i>
                 </span>
-                <input type="range" min="1" max="9" value="3" class="slider" id="sides">
+                <input type="range" min="1" max="30" value="3" class="slider" id="sides">
                 <span>
-                    <i class="fa fa-plus fa-1x"></i>
+                    <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
                 </span>
                 <p>Side(s):
                     <span id="sideValue"></span>
                 </p>
             </div>
-            <div id="canvas-container" tabindex="1"> 
+            <div id="canvas-container" tabindex="1000"> 
                 <canvas id="canvas-real" class="canvas" width='1280px' height='720px'></canvas>
                 <canvas id="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
             </div>
@@ -101,12 +99,12 @@
                 crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
                 crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
                 
             <script type='text/javascript' src="js/canvas-common.js"></script>
-            <script type='text/javascript' src="js/redo.js"></script>
+            <script type='text/javascript' src="js/drawing-line.js"></script>
             <script type='text/javascript' src="js/drawing-stline.js"></script>
             <script type='text/javascript' src="js/drawing-rectangle.js"></script>
-            <script type='text/javascript' src="js/drawing-line.js"></script>
             <script type='text/javascript' src="js/drawing-polygon.js"></script>
             <script type='text/javascript' src="js/drawing-circle.js"></script>
             <script type='text/javascript' src="js/drawing-oval.js"></script>
@@ -124,9 +122,14 @@
             <script type='text/javascript' src="js/brush-radial-gradient.js"></script>
             <script type='text/javascript' src="js/cursor.js"></script>
             <script type='text/javascript' src="js/resize-window.js"></script>
+            <script type='text/javascript' src="js/redo.js"></script>
             <script type='text/javascript' src="js/capture.js"></script>
-            <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
-            
+            <script type='text/javascript' src="js/drawing-q-curve.js"></script>
+            <script type='text/javascript' src="js/drawing-Bcurve.js"></script>
+            <script type='text/javascript' src="js/drawing-Bcurve.js"></script>
+             drawing-Qcurve.js
+             
+
             
             
 </body>

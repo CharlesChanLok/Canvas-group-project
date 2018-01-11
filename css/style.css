@@ -7,8 +7,12 @@
     right:0px
 }
 
-#canvas-draft{
+#canvas-draft {
     background-color: transparent;
+
+}
+#canvas-real {
+    background-color: rgba(255, 255, 255, 255);
 }
 
 #canvas-container{
