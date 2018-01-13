@@ -7,8 +7,9 @@ let currentMode = 'desktop';
 let dragging = false;
 contextReal.strokeStyle = "#000";
 contextDraft.strokeStyle = "#000";
-contextReal.fillStyle = "#000"
-contextDraft.fillStyle = "#000"; //hexdeciaml color code for test
+contextReal.fillStyle = "#fff";
+contextReal.fillRect(0, 0, canvasReal.width, canvasReal.height);
+
 contextReal.lineWidth = 3;
 contextDraft.lineWidth = 3;
 let sides = 3;

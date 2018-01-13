@@ -17,5 +17,6 @@ function update() {
     contextReal.fillStyle = '#' + hex;
     contextReal.strokeStyle = '#' + hex;
     rgb = hexToRgb(hex);
+    console.log(rgb);
 
 }

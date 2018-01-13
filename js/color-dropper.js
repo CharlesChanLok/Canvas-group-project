@@ -19,6 +19,7 @@ class Dropper extends PaintFunction {
         contextReal.fillStyle = "rgb(" + color.data[0] + "," + color.data[1] + "," + color.data[2] + ")";
         contextDraft.fillStyle = "rgb(" + color.data[0] + "," + color.data[1] + "," + color.data[2] + ")";
         contextReal.strokeStyle = "rgb(" + color.data[0] + "," + color.data[1] + "," + color.data[2] + ")";
+        contextDraft.strokeStyle = "rgb(" + color.data[0] + "," + color.data[1] + "," + color.data[2] + ")";
         document.getElementsByClassName('jscolor')[0].style.backgroundColor = "rgb(" + color.data[0] + "," + color.data[1] + "," + color.data[2] + ")";
     }
 }
