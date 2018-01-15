@@ -3,16 +3,13 @@
     position:absolute;
     top:0px;
     bottom:0px;
-    left:9.788rem;
+    left:0px;
     right:0px
 }
 
 #canvas-draft {
     background-color: transparent;
 
-}
-#canvas-real {
-    background-color: rgba(255, 255, 255, 255);
 }
 
 #canvas-container{
@@ -24,6 +21,7 @@
 div.slidecontainer {
     padding: 0 1rem;
 }
+
 .slider {
     -webkit-appearance: none;
     width: 6.39rem;;
@@ -67,7 +65,7 @@ h6 {
 
 
 /* Toolbox layout */
-.flex-container {
+.flex-container-row {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -76,7 +74,7 @@ h6 {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
+  flex-direction: row;
 }
 
 .tool-item {
@@ -89,7 +87,7 @@ h6 {
 }
 
 #tool-wrapper {
-    width: 9%;
+    /* width: 9%; */
     padding: 0 0.4rem;
 }
 
@@ -97,7 +95,7 @@ ul {
     padding: 0;
     margin: 0;
     list-style-type: none;
-    width: 6rem;
+    width: 6rem; 
 }
 
 
@@ -119,9 +117,10 @@ li:hover {
     
 }
 
-ul div {
+/* ul div {
     width: 1rem;
-}
+} */
+
 img {
     padding-top: 15px;
     width:28px;

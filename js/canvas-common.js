@@ -2,18 +2,19 @@ let canvasReal = document.getElementById('canvas-real');
 let contextReal = canvasReal.getContext('2d');
 let canvasDraft = document.getElementById('canvas-draft');
 let contextDraft = canvasDraft.getContext('2d');
-let currentFunction;
-let currentMode = 'desktop';
-let dragging = false;
+let toolBar = $('.toolBar');
 contextReal.strokeStyle = "#000";
 contextDraft.strokeStyle = "#000";
 contextReal.fillStyle = "#000"
 contextDraft.fillStyle = "#000"; //hexdeciaml color code for test
 contextReal.lineWidth = 3;
 contextDraft.lineWidth = 3;
+let currentFunction;
+let currentDrawBrush;
+let currentMode = 'desktop';
+let dragging = false;
 let sides = 3;
 let rgb = {r: 0, g: 0, b: 0};
-//let isdrawing = false;
 
 
 function mobileMode() {
@@ -25,13 +26,13 @@ function mobileMode() {
     });
 
     hammertime.on('doubletap', function (ev) {
-        currentFunction.onKeyDown(ev.type);
+        currentFunction.onRightClick(ev.type);
         screenSave();
     });
     
     hammertime.on('panstart', function (ev) {
         let mouseX = ev.center.x - canvasDraft.offsetLeft;
-        let mouseY = ev.center.y - canvasDraft.offsetTop;
+        let mouseY = ev.center.y - canvasDraft.offsetTop - toolBar.outerHeight(true);;
         console.log(mouseX);
         console.log(mouseY);
         currentFunction.onMouseDown([mouseX, mouseY], ev);
@@ -40,7 +41,7 @@ function mobileMode() {
 
     hammertime.on('panmove', function (ev) {
         let mouseX = ev.center.x - canvasDraft.offsetLeft;
-        let mouseY = ev.center.y - canvasDraft.offsetTop;
+        let mouseY = ev.center.y - canvasDraft.offsetTop - toolBar.outerHeight(true);;
         if (dragging) {
             currentFunction.onDragging([mouseX, mouseY], ev);
         }
@@ -48,7 +49,7 @@ function mobileMode() {
 
     hammertime.on('pan', function (ev) {
         let mouseX = ev.center.x - canvasDraft.offsetLeft;
-        let mouseY = ev.center.y - canvasDraft.offsetTop;
+        let mouseY = ev.center.y - canvasDraft.offsetTop - toolBar.outerHeight(true);
             currentFunction.onMouseMove([mouseX, mouseY], ev);
     });
 
@@ -56,29 +57,41 @@ function mobileMode() {
     hammertime.on('panend', function (ev) {
         dragging = false;
         let mouseX = ev.center.x - canvasDraft.offsetLeft;
-        let mouseY = ev.center.y - canvasDraft.offsetTop;
+        let mouseY = ev.center.y - canvasDraft.offsetTop - toolBar.outerHeight(true);
         currentFunction.onMouseUp([mouseX, mouseY], ev);
     });
 }
 
 function desktopMode() {
     currentMode = 'desktop';
-    $('#canvas-container').bind('keydown', function (event) {
+    $(window).keydown(event => {
         let key = event.which;
         console.log(key);
-        currentFunction.onKeyDown(key);
-        (key === 13) ? screenSave() : null;
+            currentFunction.onKeyDown(key);
     });
-    
+
+    $('#canvas-draft').contextmenu(function () {
+        return false;
+    });
+
     $('#canvas-draft').mousedown(function (e) {
-        let mouseX = e.pageX - this.offsetLeft;
-        let mouseY = e.pageY - this.offsetTop;
-        currentFunction.onMouseDown([mouseX, mouseY], e);
-        dragging = true;
+        console.log(e.which);
+        if (e.which === 1) {
+            let mouseX = e.pageX - this.offsetLeft;
+            let mouseY = e.pageY - this.offsetTop - toolBar.outerHeight(true);
+            console.log(this.offsetTop);
+            currentFunction.onMouseDown([mouseX, mouseY], e);
+            dragging = true;
+        } else if (e.which === 3) {
+            let key = e.which;
+            currentFunction.onRightClick(key);
+            // screenSave();
+        }
     });
     $('#canvas-draft').mousemove(function (e) {
         let mouseX = e.pageX - this.offsetLeft;
-        let mouseY = e.pageY - this.offsetTop;
+        let mouseY = e.pageY - this.offsetTop - toolBar.outerHeight(true);
+        console.log(toolBar.outerHeight(true));
         if (dragging) {
             currentFunction.onDragging([mouseX, mouseY], e);
         }
@@ -87,19 +100,19 @@ function desktopMode() {
     $('#canvas-draft').mouseup(function (e) {
         dragging = false;
         let mouseX = e.pageX - this.offsetLeft;
-        let mouseY = e.pageY - this.offsetTop;
+        let mouseY = e.pageY - this.offsetTop - toolBar.outerHeight(true);
         currentFunction.onMouseUp([mouseX, mouseY], e);
     });
     $('#canvas-draft').mouseleave(function (e) {
         dragging = false;
         let mouseX = e.pageX - this.offsetLeft;
-        let mouseY = e.pageY - this.offsetTop;
+        let mouseY = e.pageY - this.offsetTop - toolBar.outerHeight(true);
         currentFunction.onMouseLeave([mouseX, mouseY], e);
     });
     
     $('#canvas-draft').mouseenter(function (e) {
         let mouseX = e.pageX - this.offsetLeft;
-        let mouseY = e.pageY - this.offsetTop;
+        let mouseY = e.pageY - this.offsetTop - toolBar.outerHeight(true);
         currentFunction.onMouseEnter([mouseX, mouseY], e);
     });
 
@@ -121,6 +134,6 @@ class PaintFunction {
     onMouseUp() { }
     onMouseLeave() { }
     onMouseEnter() { }
-    onKeyDown() { }
+    onRightClick() { }
 }    
 

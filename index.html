@@ -15,12 +15,14 @@
 </head>
 
 <body>
-    <div id="tool-wrapper">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                File
-            </button>
+    <div class=''>
+        <div class="toolBar">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    File
+                </button>
+            </div>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <a class="dropdown-item bg-light fa fa-download fa-1x" id="save-PNG">Save as PNG</a>
                 <a class="dropdown-item bg-light fa fa-download fa-1x" id="save-JPEG">Save as JPEG</a>
@@ -28,7 +30,7 @@
                     <input type="file" class="btn" id="upload-image">
                 </a>
             </div>
-            <ul class="flex-container">
+            <ul class="flex-container-row">
                 <li class="fa fa-pencil fa-2x tool-item" aria-hidden="true" id="drawing-line"></li>
                 <li class="tool-item" aria-hidden="true" id="drawing-Q-curve">
                     <img src="img/tool/q-curve.png">
@@ -60,77 +62,75 @@
                     <button class="jscolor {valueElement: 'color_value'}" style="width: 30px; height:30px;">
                     </button>
                 </li>
-    
-    
+                
+                <div class="slidecontainer">
+                    <span>
+                        <i class="fa fa-minus fa-1x" aria-hidden="true"></i>
+                    </span>
+                    <input type="range" min="1" max="15" value="3" class="slider" id="line-width">
+                    <span>
+                        <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
+                    </span>
+                    <p>Width:
+                        <span id="lineWidth"></span>
+                    </p>
+                </div>
+                <div class="slidecontainer">
+                    <span>
+                        <i class="fa fa-minus fa-1x" aria-hidden="true"></i>
+                    </span>
+                    <input type="range" min="1" max="30" value="3" class="slider" id="sides">
+                    <span>
+                        <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
+                    </span>
+                    <p>Side(s):
+                        <span id="sideValue"></span>
+                    </p>
+                </div>
             </ul>
-            <div class="slidecontainer">
-                <span>
-                    <i class="fa fa-minus fa-1x" aria-hidden="true"></i>
-                </span>
-                <input type="range" min="1" max="15" value="3" class="slider" id="line-width">
-                <span>
-                    <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
-                </span>
-                <p>Width:
-                    <span id="lineWidth"></span>
-                </p>
-            </div>
-            <div class="slidecontainer">
-                <span>
-                    <i class="fa fa-minus fa-1x" aria-hidden="true"></i>
-                </span>
-                <input type="range" min="1" max="30" value="3" class="slider" id="sides">
-                <span>
-                    <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
-                </span>
-                <p>Side(s):
-                    <span id="sideValue"></span>
-                </p>
-            </div>
-            <div id="canvas-container" tabindex="1000"> 
-                <canvas id="canvas-real" class="canvas" width='1280px' height='720px'></canvas>
-                <canvas id="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
+        </div>
+        <div class="col-sm-11">
+            <div id="canvas-container"> 
+                <canvas id="canvas-real" class="canvas" width='1200px' height='720px'></canvas>
+                <canvas id="canvas-draft" class="canvas" width='1200px' height='720px'></canvas>
             </div>
         </div>
+        </div>
+    </div>
 
-            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-                crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
-                crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-                
-            <script type='text/javascript' src="js/canvas-common.js"></script>
-            <script type='text/javascript' src="js/drawing-line.js"></script>
-            <script type='text/javascript' src="js/drawing-stline.js"></script>
-            <script type='text/javascript' src="js/drawing-rectangle.js"></script>
-            <script type='text/javascript' src="js/drawing-polygon.js"></script>
-            <script type='text/javascript' src="js/drawing-circle.js"></script>
-            <script type='text/javascript' src="js/drawing-oval.js"></script>
-            <script type='text/javascript' src="js/color-bucket.js"></script>
-            <script type='text/javascript' src="js/clearing-all.js"></script>
-            <script type='text/javascript' src="js/controlPoint.js"></script>
-            <script type='text/javascript' src="js/eraser.js"></script>
-            <script type='text/javascript' src="js/functionSelector.js"></script>
-            <script type='text/javascript' src="js/color-selector.js"></script>
-            <script type='text/javascript' src="js/upload-image.js"></script>
-            <script type='text/javascript' src="js/save.js"></script>
-            <script type='text/javascript' src="js/color-dropper.js"></script>
-            <script type='text/javascript' src="js/jscolor.min.js"></script>
-            <script type='text/javascript' src="js/slider.js"></script>
-            <script type='text/javascript' src="js/brush-radial-gradient.js"></script>
-            <script type='text/javascript' src="js/cursor.js"></script>
-            <script type='text/javascript' src="js/resize-window.js"></script>
-            <script type='text/javascript' src="js/redo.js"></script>
-            <script type='text/javascript' src="js/capture.js"></script>
-            <script type='text/javascript' src="js/drawing-q-curve.js"></script>
-            <script type='text/javascript' src="js/drawing-Bcurve.js"></script>
-            <script type='text/javascript' src="js/drawing-Bcurve.js"></script>
-             drawing-Qcurve.js
-             
-
-            
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>    
+        <script type='text/javascript' src="js/canvas-common.js"></script>
+        <script type='text/javascript' src="js/drawing-line.js"></script>
+        <script type='text/javascript' src="js/drawing-stline.js"></script>
+        <script type='text/javascript' src="js/drawing-rectangle.js"></script>
+        <script type='text/javascript' src="js/drawing-polygon.js"></script>
+        <script type='text/javascript' src="js/drawing-circle.js"></script>
+        <script type='text/javascript' src="js/drawing-oval.js"></script>
+        <script type='text/javascript' src="js/color-bucket.js"></script>
+        <script type='text/javascript' src="js/clearing-all.js"></script>
+        <script type='text/javascript' src="js/controlPoint.js"></script>
+        <script type='text/javascript' src="js/eraser.js"></script>
+        <script type='text/javascript' src="js/functionSelector.js"></script>
+        <script type='text/javascript' src="js/color-selector.js"></script>
+        <script type='text/javascript' src="js/upload-image.js"></script>
+        <script type='text/javascript' src="js/save.js"></script>
+        <script type='text/javascript' src="js/color-dropper.js"></script>
+        <script type='text/javascript' src="js/jscolor.min.js"></script>
+        <script type='text/javascript' src="js/slider.js"></script>
+        <script type='text/javascript' src="js/brush-radial-gradient.js"></script>
+        <script type='text/javascript' src="js/cursor.js"></script>
+        <script type='text/javascript' src="js/resize-window.js"></script>
+        <script type='text/javascript' src="js/redo.js"></script>
+        <script type='text/javascript' src="js/capture.js"></script>
+        <script type='text/javascript' src="js/drawing-q-curve.js"></script>
+        <script type='text/javascript' src="js/drawing-Bcurve.js"></script>
+        <script type='text/javascript' src="js/drawing-Bcurve.js"></script>
             
 </body>
 

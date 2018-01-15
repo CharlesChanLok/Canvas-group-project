@@ -47,7 +47,7 @@ class DrawingPolygon extends PaintFunction {
     onMouseLeave() { }
     onMouseEnter() { }
 
-    onKeyDown(key) {
+    onRightClick(key) {
         if (this.doneSizing && (key == 13 || key == 'doubletap')) {
             this.drawPolygon(this.contextReal, this.orig, this.radius);
             this.doneSizing = false;

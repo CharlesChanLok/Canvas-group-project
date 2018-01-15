@@ -3,8 +3,8 @@ class DrawingRectangle extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        this.rectWidth = 0;
-        this.rectHeight = 0;
+        this.rectWidth = null;
+        this.rectHeight = null;
         this.orig = 0;
         this.controlPointArray = [];
         this.onControlPt = null;
@@ -20,6 +20,8 @@ class DrawingRectangle extends PaintFunction {
         if (this.controlPointArray.length !== 0) {
             this.onControlPt = ifOnPath(this.controlPointArray, coord);
         }
+        console.log(this.controlPointArray);
+        console.log(this.onControlPt);
         if (!this.doneSizing) {
             this.orig = coord;
         } else if (this.onControlPt == this.controlPointArray[6]) {
@@ -81,7 +83,7 @@ class DrawingRectangle extends PaintFunction {
         if (currentMode === 'mobile') {
             this.resizeMode = null;
         }
-        if (!this.doneSizing) {
+        if (!this.doneSizing && this.rectWidth != null && this.rectHeight != null) {
             this.doneSizing = true;
         } else if (this.canMove) {
             this.canMove = false;
@@ -92,11 +94,11 @@ class DrawingRectangle extends PaintFunction {
     onMouseLeave(){};
     onMouseEnter() {}
     
-    onKeyDown(key) {
-        if (this.doneSizing && (key == 13 || key == 'doubletap')) {
+    onRightClick(key) {
+        if (this.doneSizing || key == 'doubletap') {
             this.drawRect(this.contextReal, this.orig, this.rectWidth, this.rectHeight);
-            this.rectWidth = 0;
-            this.rectHeight = 0;
+            this.rectWidth = null;
+            this.rectHeight = null;
             this.controlPointArray = [];
             this.onControlPt = null;
             this.resizeMode = null;

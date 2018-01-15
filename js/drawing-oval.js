@@ -60,9 +60,6 @@ class DrawingOval extends PaintFunction {
         } else if (this.resizeMode === 'top-right' || this.resizeMode === 'top-left' || this.resizeMode === 'bottom-right' || this.resizeMode === 'bottom-left') {
             this.radiusX = Math.abs(coord[0] - this.orig[0]);
             this.radiusY = Math.abs(coord[1] - this.orig[1]);
-            if (this.shiftOn) {
-                (this.radiusX >= this.radiusY) ? this.radiusY = this.radiusX : this.radiusX = this.radiusY;
-            };
             this.drawOval(this.contextDraft, this.orig, this.radiusX, this.radiusY);
         } else if (this.canMove) {
                 this.orig = [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]];
@@ -86,9 +83,9 @@ class DrawingOval extends PaintFunction {
     onMouseLeave() { }
     onMouseEnter() { }
 
-    onKeyDown(key) {
+    onRightClick(key) {
         console.log(key);
-        if (this.doneSizing && (key == 13 || key == 'doubletap')) {
+        if (this.doneSizing || key == 'doubletap') {
             this.drawOval(this.contextReal, this.orig, this.radiusX, this.radiusY);
             this.rectWidth = 0;
             this.rectHeight = 0;
@@ -98,7 +95,12 @@ class DrawingOval extends PaintFunction {
             this.doneSizing = false;
             this.canMove = false;
             this.dragOrigDiff = null;
-        } else if (key == 16) {
+        }    
+    }
+
+    onKeyDown(key) {
+        console.log()
+        if (key === 16) {
             (this.shiftOn)? this.shiftOn = false : this.shiftOn = true;
         }
     }
@@ -109,6 +111,9 @@ class DrawingOval extends PaintFunction {
         context.beginPath();
         context.ellipse(coord[0], coord[1], radiusX, radiusY, 0, 0, 2 * Math.PI);
         context.fill();
+        if (this.shiftOn) {
+            (this.radiusX >= this.radiusY) ? this.radiusY = this.radiusX : this.radiusX = this.radiusY;
+        };
         if (context != this.contextReal && !this.canMove) {
             drawControlPt(this.controlPointArray, [this.orig[0] - this.radiusX, this.orig[1] - this.radiusY], this.radiusX * 2, this.radiusY * 2);    
         }

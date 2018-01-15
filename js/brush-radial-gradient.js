@@ -48,7 +48,7 @@ class BrushRadialGradient extends PaintFunction {
     onMouseLeave() { }
     onMouseEnter() { }
 
-    onKeyDown(key) {
+    onRightClick(key) {
         if (this.doneDrawing && (key == 13 || key == 'doubletap')) {
             this.drawfromPath(this.contextReal);
             this.pathSave = [];
