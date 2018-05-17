@@ -22,7 +22,6 @@ function mobileMode() {
     let hammertime = new Hammer(canvasDraft);
     hammertime.get('pan').set({ direction: Hammer.DIRECTION_ALL });
     hammertime.on('pan panmove panstart panend pancancel singletap tap doubletap press swipe', function (ev) {
-        console.log(ev.type);
     });
 
     hammertime.on('doubletap', function (ev) {
@@ -33,8 +32,6 @@ function mobileMode() {
     hammertime.on('panstart', function (ev) {
         let mouseX = ev.center.x - canvasDraft.offsetLeft;
         let mouseY = ev.center.y - canvasDraft.offsetTop - toolBar.outerHeight(true);;
-        console.log(mouseX);
-        console.log(mouseY);
         currentFunction.onMouseDown([mouseX, mouseY], ev);
         dragging = true;
     });
@@ -66,7 +63,6 @@ function desktopMode() {
     currentMode = 'desktop';
     $(window).keydown(event => {
         let key = event.which;
-        console.log(key);
             currentFunction.onKeyDown(key);
     });
 
@@ -75,23 +71,19 @@ function desktopMode() {
     });
 
     $('#canvas-draft').mousedown(function (e) {
-        console.log(e.which);
         if (e.which === 1) {
             let mouseX = e.pageX - this.offsetLeft;
             let mouseY = e.pageY - this.offsetTop - toolBar.outerHeight(true);
-            console.log(this.offsetTop);
             currentFunction.onMouseDown([mouseX, mouseY], e);
             dragging = true;
         } else if (e.which === 3) {
             let key = e.which;
             currentFunction.onRightClick(key);
-            // screenSave();
         }
     });
     $('#canvas-draft').mousemove(function (e) {
         let mouseX = e.pageX - this.offsetLeft;
         let mouseY = e.pageY - this.offsetTop - toolBar.outerHeight(true);
-        console.log(toolBar.outerHeight(true));
         if (dragging) {
             currentFunction.onDragging([mouseX, mouseY], e);
         }

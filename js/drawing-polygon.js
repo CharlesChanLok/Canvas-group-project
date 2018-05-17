@@ -11,10 +11,8 @@ class DrawingPolygon extends PaintFunction {
     onMouseDown(coord) {
         if (!this.doneSizing) {
             this.orig = coord;
-            console.log('centerPt:' + coord);
         }else {
             this.dragOrigDiff = [coord[0] - this.orig[0], coord[1] - this.orig[1]];
-            console.log(this.dragOrigDiff);
             if (Math.sqrt(Math.pow(this.dragOrigDiff[0], 2)
             + Math.pow(this.dragOrigDiff[1], 2)) <= this.radius) {
                 this.canMove = true;
@@ -28,12 +26,8 @@ class DrawingPolygon extends PaintFunction {
             this.drawPolygon(this.contextDraft, this.orig, this.radius)
         } else {
             if (this.canMove) {
-                    console.log('diff: ' + this.dragOrigDiff);
-                    console.log('new CenterPt: ' + [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]]);
                     this.orig = [coord[0] - this.dragOrigDiff[0], coord[1] - this.dragOrigDiff[1]];
                     this.drawPolygon(this.contextDraft, this.orig, this.radius)
-                    // this.orig[0] = coord[0];
-                    // this.orig[1] = coord[1];
                 }
         }
     }
@@ -48,11 +42,12 @@ class DrawingPolygon extends PaintFunction {
     onMouseEnter() { }
 
     onRightClick(key) {
-        if (this.doneSizing && (key == 13 || key == 'doubletap')) {
+        if (this.doneSizing && (key == 3 || key == 'doubletap')) {
             this.drawPolygon(this.contextReal, this.orig, this.radius);
             this.doneSizing = false;
             this.canMove = false;
             this.dragOrigDiff = null;
+            screenSave()
         }
     }
 

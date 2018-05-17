@@ -1,3 +1,5 @@
+
+
 class DrawingRectangle extends PaintFunction {
     constructor(contextReal, contextDraft) {
         super();
@@ -20,8 +22,6 @@ class DrawingRectangle extends PaintFunction {
         if (this.controlPointArray.length !== 0) {
             this.onControlPt = ifOnPath(this.controlPointArray, coord);
         }
-        console.log(this.controlPointArray);
-        console.log(this.onControlPt);
         if (!this.doneSizing) {
             this.orig = coord;
         } else if (this.onControlPt == this.controlPointArray[6]) {
@@ -56,7 +56,6 @@ class DrawingRectangle extends PaintFunction {
     }
 
     onDragging(coord, event) {
-        console.log(this.resizeMode);
         if (!this.doneSizing) {
             this.rectWidth = coord[0] - this.orig[0];
             this.rectHeight = coord[1] - this.orig[1];
@@ -107,6 +106,7 @@ class DrawingRectangle extends PaintFunction {
             this.dragOrigDiff = null;
             this.inAreaX = null;
             this.inAreaY = null;
+            screenSave();
         }
     }
 

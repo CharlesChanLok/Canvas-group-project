@@ -11,27 +11,16 @@ class ColorBucket extends PaintFunction {
         let pixelStack = [coord];
         let pixelStart = (coord[1] * this.canvas.width + coord[0]) * 4;
         let x, y;
-        // this.context.fillStyle = '#345678';
         let hex = this.context.fillStyle;
-        console.log(this.context.fillStyle);
         let fillR = parseInt(hex.slice(1, 3), 16);
         let fillG = parseInt(hex.slice(3, 5), 16);
         let fillB = parseInt(hex.slice(5, 7), 16);
         let opacity = 255;
-        console.log(fillR);
-        console.log(fillG);
-        console.log(fillB);
         this.oldR = this.imgDataArray.data[pixelStart];
         this.oldG = this.imgDataArray.data[pixelStart + 1];
         this.oldB = this.imgDataArray.data[pixelStart + 2];
         this.oldA = this.imgDataArray.data[pixelStart + 3];
 
-        console.log(this.oldR);
-        console.log(this.oldG);
-        console.log(this.oldB);
-        console.log(this.oldA);
-
-        // console.log(!(this.oldR == fillR && this.oldG == fillG && this.oldB == fillB && this.oldA == 255));
         if (!(fillR == this.oldR && fillG == this.oldG && fillB == this.oldB && this.oldA == opacity)) {
             while (pixelStack.length) {
                 let newPixel = pixelStack.pop();

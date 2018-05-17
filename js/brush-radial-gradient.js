@@ -26,7 +26,6 @@ class BrushRadialGradient extends PaintFunction {
     onDragging(coord, event) {
         if (!this.doneDrawing) {
             this.pathSave.push(coord);
-            console.log(coord);
             this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
             this.drawfromPath(this.contextDraft);
         } else if (this.canMove) {
@@ -49,11 +48,12 @@ class BrushRadialGradient extends PaintFunction {
     onMouseEnter() { }
 
     onRightClick(key) {
-        if (this.doneDrawing && (key == 13 || key == 'doubletap')) {
+        if (this.doneDrawing && (key == 3 || key == 'doubletap')) {
             this.drawfromPath(this.contextReal);
             this.pathSave = [];
             this.doneDrawing = false;
             this.canMove = false;
+            screenSave()
         }
     }
 

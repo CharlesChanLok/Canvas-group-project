@@ -36,7 +36,6 @@ sideValue.oninput = function() {
 
 /* plus  and minus section of Polygon*/
 document.getElementsByClassName("fa-plus")[1].addEventListener('click', () => {
-  console.log("i am called")
   this.sideValue.value++;
   outputSide.innerHTML = this.sideValue.value;
   sides++;
@@ -46,6 +45,5 @@ document.getElementsByClassName("fa-minus")[1].addEventListener('click', () => {
   this.sideValue.value--;
   outputSide.innerHTML = this.sideValue.value;
   sides--;
-
 });
 

@@ -84,7 +84,6 @@ class DrawingOval extends PaintFunction {
     onMouseEnter() { }
 
     onRightClick(key) {
-        console.log(key);
         if (this.doneSizing || key == 'doubletap') {
             this.drawOval(this.contextReal, this.orig, this.radiusX, this.radiusY);
             this.rectWidth = 0;
@@ -95,11 +94,11 @@ class DrawingOval extends PaintFunction {
             this.doneSizing = false;
             this.canMove = false;
             this.dragOrigDiff = null;
+            screenSave()
         }    
     }
 
     onKeyDown(key) {
-        console.log()
         if (key === 16) {
             (this.shiftOn)? this.shiftOn = false : this.shiftOn = true;
         }

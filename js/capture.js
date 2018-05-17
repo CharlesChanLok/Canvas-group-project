@@ -49,8 +49,12 @@ class Capture extends PaintFunction {
     onMouseLeave() { }
     onMouseEnter() { }
     onRightClick(key) {
-        if (this.doneSizing && (key == 13 || key == 'doubletap')) {
+        if (this.doneSizing && (key == 3 || key == 'doubletap')) {
             this.drawCapture(this.contextReal, this.orig, this.capWidth, this.capHeight);
+            this.origin = null;
+            this.capWidth = null;
+            this.capHeight = null;
+            screenSave()
         }
     }
 

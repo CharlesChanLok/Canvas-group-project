@@ -35,7 +35,6 @@ class DrawingCircle extends PaintFunction {
             this.radius = this.calRadius(this.orig, coord);
             this.drawCircle(this.contextDraft, this.orig, this.radius);
         } else if (this.resizeMode === 'enable') {
-            // this.radius = Math.abs(coord[0] - this.orig[0]);
             this.radius = this.calRadius(this.orig, coord);
             this.drawCircle(this.contextDraft, this.orig, this.radius);
         } else if (this.canMove) {
@@ -61,7 +60,7 @@ class DrawingCircle extends PaintFunction {
     onMouseEnter() { }
 
     onRightClick(key) {
-        if (this.doneSizing && (key == 13 || key == 'doubletap')) {
+        if (this.doneSizing && (key == 3 || key == 'doubletap')) {
             this.drawCircle(this.contextReal, this.orig, this.radius);
             this.orig = 0;
             this.radius = 0;
@@ -71,6 +70,7 @@ class DrawingCircle extends PaintFunction {
             this.resizeMode = null;
             this.onControlPt = null;
             this.dragOrigDiff = null;
+            screenSave()
         }
     }
 

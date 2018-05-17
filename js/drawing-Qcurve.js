@@ -65,7 +65,6 @@ class DrawingQcurve extends PaintFunction{  //using one canvas draft only
                 
             }
             this.prevCoord = {x:coord[0], y:coord[1]};
-            console.log(JSON.stringify(this.quadcoord));
             this.contextDraft.beginPath();
             this.contextDraft.moveTo(this.quadcoord.start.x,this.quadcoord.start.y);
             this.drawCurveDraft(this.quadcoord.mid.x,this.quadcoord.mid.y,this.quadcoord.end.x,this.quadcoord.end.y);
@@ -103,7 +102,6 @@ class DrawingQcurve extends PaintFunction{  //using one canvas draft only
             this.drawCPDraft(this.quadcoord.end.x,this.quadcoord.end.y);
             
         } else{
-            console.log(JSON.stringify(this.quadcoord));
             //reset all boolean
             this.finish = this.phase_adjust = false;
             //clear draft canvas and print on real canvas
@@ -135,7 +133,6 @@ class DrawingQcurve extends PaintFunction{  //using one canvas draft only
             this.drawCPDraft(this.quadcoord.end.x,this.quadcoord.end.y);
             
         }
-        console.log(JSON.stringify(this.quadcoord));
         this.contextDraft.beginPath();
         this.contextDraft.moveTo(this.quadcoord.start.x,this.quadcoord.start.y);
         this.drawCurveDraft(this.quadcoord.mid.x,this.quadcoord.mid.y,this.quadcoord.end.x,this.quadcoord.end.y);
@@ -254,15 +251,12 @@ class DrawingQcurve extends PaintFunction{  //using one canvas draft only
         if ((this.between(x,this.quadcoord.start.x - this.cp_size/2, this.quadcoord.start.x + this.cp_size/2))
             && (this.between(y,this.quadcoord.start.y - this.cp_size/2, this.quadcoord.start.y+ this.cp_size/2))){
             this.dragpt = 'start';
-            console.log('Start point was clicked was clicked');
         } else if ((this.between(x,this.quadcoord.mid.x - this.cp_size/2, this.quadcoord.mid.x + this.cp_size/2))
                 && (this.between(y,this.quadcoord.mid.y - this.cp_size/2, this.quadcoord.mid.y + this.cp_size/2))){
             this.dragpt = 'mid';         
-            console.log('Mid point was clicked was clicked');
         } else if ((this.between(x,this.quadcoord.end.x - this.cp_size/2, this.quadcoord.end.x + this.cp_size/2))
                 && (this.between(y,this.quadcoord.end.y- this.cp_size/2, this.quadcoord.end.y + this.cp_size/2))){
             this.dragpt = 'end';  
-            console.log('End point was clicked was clicked');
         } else{
             //if the mouse is not clicked inside the circle then end phase adjust and cancel
             this.finish = true;
